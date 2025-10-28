@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: RentChain Backend API
+  description: Offchain backend for RentChain - Event indexing, payments, notifications
+  version: 1.0.0
+  contact:
+    name: RentChain Team
+    url: https://rentchain.xyz
+    email: support@rentchain.xyz
+servers:
+  - url: http://localhost:3001/api
+    description: Development server
+  - url: https://api.rentchain.xyz/api
+    description: Production server
+tags:
+  - name: Properties
+    description: Property listing and management
+  - name: Payments
+    description: Payment processing and history
+  - name: Notifications
+    description: User notifications
+  - name: Analytics
+    description: Platform analytics and insights
+paths:
+  /health:
+    get:
+      summary: Health check
+      tags: [Health]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+                  timestamp:
+                    type: string
+                    format: date-time
+                  service:
+                    type: string
+                    example: RentChain Backend
