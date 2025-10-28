@@ -32,7 +32,7 @@ contract RentAgreement {
     PropertyRegistry public propertyRegistry;
     
     event AgreementCreated(uint256 indexed agreementId, uint256 indexed propertyId, address landlord, address tenant);
-    AgreementCreated(uint256 indexed agreementId, address indexed tenant, uint256 amount);
+    event RentPaid(uint256 indexed agreementId, address indexed tenant, uint256 amount);
     event DepositRefunded(uint256 indexed agreementId, address indexed tenant, uint256 amount);
     event AgreementCompleted(uint256 indexed agreementId);
     event DisputeRaised(uint256 indexed agreementId, address raisedBy);

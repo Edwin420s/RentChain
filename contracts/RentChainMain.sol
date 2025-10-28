@@ -396,6 +396,21 @@ contract RentChainMain is RentChainBase {
         return RentChainUtils.stringsEqual(a, b);
     }
 
+    function validateRentalParameters(
+        uint256 rentAmount,
+        uint256 securityDeposit,
+        uint256 duration
+    ) internal pure {
+        require(rentAmount > 0, "Rent amount must be positive");
+        require(securityDeposit <= rentAmount * RentChainConstants.MAX_SECURITY_DEPOSIT_MULTIPLIER, "Deposit too high");
+        require(duration >= RentChainConstants.MIN_RENTAL_DURATION, "Duration too short");
+        require(duration <= RentChainConstants.MAX_RENTAL_DURATION, "Duration too long");
+    }
+
+    function calculatePlatformFee(uint256 amount) internal pure returns (uint256) {
+        return RentChainConstants.calculatePlatformFee(amount);
+    }
+
     // Emergency Overrides
     function emergencyWithdraw(address token, uint256 amount) external onlyAdmin {
         require(!systemActive, "System must be paused");

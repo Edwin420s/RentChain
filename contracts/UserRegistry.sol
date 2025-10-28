@@ -81,7 +81,7 @@ contract UserRegistry {
         emit UserVerified(user, msg.sender);
     }
 
-    function updateReputation(address user, int256 change) external onlyModerator {
+    function updateUserReputation(address user, int256 change) external onlyModerator {
         require(bytes(users[user].name).length > 0, "User not registered");
         
         if (change > 0) {
