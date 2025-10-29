@@ -42,10 +42,10 @@ contract RentChainSecurity {
     uint256 public cooldownPeriod;
 
     event SecurityCheckPerformed(address user, bool passed, uint256 riskScore, string checkType);
-    Event UserBlacklisted(address user, string reason);
-    Event UserWhitelisted(address user);
-    Event TransactionLimitUpdated(address user, uint256 daily, uint256 weekly, uint256 monthly);
-    Event SuspiciousActivityDetected(address user, string activity, uint256 riskScore);
+    event UserBlacklisted(address user, string reason);
+    event UserWhitelisted(address user);
+    event TransactionLimitUpdated(address user, uint256 daily, uint256 weekly, uint256 monthly);
+    event SuspiciousActivityDetected(address user, string activity, uint256 riskScore);
 
     modifier onlyAdmin() {
         require(msg.sender == admin, "Not admin");

@@ -36,10 +36,10 @@ contract RentChainReferral {
     uint256 public totalRewardsDistributed;
 
     event UserReferred(address referrer, address referred, uint256 registeredAt);
-    Event RewardEarned(address referrer, uint256 amount, uint256 percentage);
-    Event RewardClaimed(address user, uint256 amount);
-    Event RewardTierAdded(uint256 tierId, uint256 percentage, uint256 minReferrals, uint256 maxReferrals);
-    Event BaseRewardUpdated(uint256 newBaseReward);
+    event RewardEarned(address referrer, uint256 amount, uint256 percentage);
+    event RewardClaimed(address user, uint256 amount);
+    event RewardTierAdded(uint256 tierId, uint256 percentage, uint256 minReferrals, uint256 maxReferrals);
+    event BaseRewardUpdated(uint256 newBaseReward);
 
     modifier onlyAdmin() {
         require(msg.sender == admin, "Not admin");

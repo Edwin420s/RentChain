@@ -76,9 +76,7 @@ async function main() {
     console.log("📝 Deploying RentAgreement...");
     const RentAgreement = await hre.ethers.getContractFactory("RentAgreement");
     const rentAgreement = await RentAgreement.deploy(
-      deployedContracts.PropertyRegistry,
-      deployedContracts.EscrowManager,
-      deployedContracts.UserRegistry
+      deployedContracts.PropertyRegistry
     );
     await rentAgreement.waitForDeployment();
     deployedContracts.RentAgreement = await rentAgreement.getAddress();

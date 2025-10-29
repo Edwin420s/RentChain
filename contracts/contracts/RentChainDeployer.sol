@@ -5,6 +5,9 @@ import "./RentChainMain.sol";
 import "./RentChainEmergency.sol";
 import "./RentChainConstants.sol";
 import "./RentChainUtils.sol";
+import "./TreasuryMock.sol";
+import "./DevelopmentMock.sol";
+import "./MarketingMock.sol";
 
 contract RentChainDeployer {
     using RentChainUtils for address;
@@ -174,18 +177,5 @@ contract RentChainDeployer {
     function transferDeployer(address newDeployer) external onlyDeployer {
         require(newDeployer != address(0), "Invalid deployer");
         deployer = newDeployer;
-    }
-
-    // Mock contracts for treasury addresses (would be real multisigs in production)
-    contract TreasuryMock {
-        receive() external payable {}
-    }
-
-    contract DevelopmentMock {
-        receive() external payable {}
-    }
-
-    contract MarketingMock {
-        receive() external payable {}
     }
 }

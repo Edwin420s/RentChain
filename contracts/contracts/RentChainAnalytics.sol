@@ -44,8 +44,8 @@ contract RentChainAnalytics {
     uint256 public lastSnapshot;
 
     event UserStatsUpdated(address user, uint256 propertiesListed, uint256 rentalsCompleted);
-    Event PlatformStatsUpdated(uint256 totalProperties, uint256 totalRentals, uint256 totalVolume);
-    Event MarketSnapshotTaken(uint256 snapshotId, uint256 timestamp);
+    event PlatformStatsUpdated(uint256 totalProperties, uint256 totalRentals, uint256 totalVolume);
+    event MarketSnapshotTaken(uint256 snapshotId, uint256 timestamp);
 
     modifier onlyAdmin() {
         require(msg.sender == admin, "Not admin");
