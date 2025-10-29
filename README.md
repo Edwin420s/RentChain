@@ -102,7 +102,7 @@ ZuriRent provides:
 ## 📦 Project Structure
 
 ```
-ZuriRent/
+RentChain/
 ├── contracts/              # 50 Smart Contracts (Solidity 0.8.19)
 │   ├── RentChainMain.sol         # Main orchestrator
 │   ├── PropertyRegistry.sol      # Property listings
@@ -159,9 +159,11 @@ Before you begin, ensure you have:
 
 #### 1. Clone the Repository
 ```bash
-git clone https://github.com/Edwin420s/ZuriRent.git
-cd ZuriRent
+git clone https://github.com/Edwin420s/RentChain.git
+cd RentChain
 ```
+
+> **Note**: The project name is **ZuriRent**, but the folder is named **RentChain** for backwards compatibility.
 
 #### 2. Install Contract Dependencies
 ```bash
@@ -454,8 +456,6 @@ We welcome contributions! To contribute:
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-See [CONTRIBUTING.md](frontend/CONTRIBUTING.md) for detailed guidelines.
 
 ---
 

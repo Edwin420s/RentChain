@@ -542,8 +542,8 @@ Chain ID: 534351
 **Run Locally**:
 ```bash
 # 1. Clone repo
-git clone https://github.com/Edwin420s/ZuriRent
-cd ZuriRent
+git clone https://github.com/Edwin420s/ZuriRent.git
+cd RentChain
 
 # 2. Install all dependencies
 cd contracts && npm install
