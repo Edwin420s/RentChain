@@ -1,14 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+import "./interfaces/IERC20.sol";
+
 import "./RentChainBase.sol";
 import "./RentChainConstants.sol";
 
-interface IERC20 {
-    function transfer(address to, uint256 amount) external returns (bool);
-    function transferFrom(address from, address to, uint256 amount) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
-}
+
 
 contract RentChainGovernanceToken is RentChainBase {
     string public constant name = "RentChain Governance Token";

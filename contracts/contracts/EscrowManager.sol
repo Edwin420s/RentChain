@@ -17,7 +17,7 @@ contract EscrowManager {
     mapping(uint256 => Escrow) public escrows;
     uint256 public nextEscrowId;
     
-    RentAgreement public rentAgreement;
+    address public rentAgreement;
 
     event EscrowCreated(uint256 indexed escrowId, address indexed landlord, address indexed tenant, uint256 amount);
     event EscrowReleased(uint256 indexed escrowId, address indexed to, uint256 amount);
@@ -25,7 +25,7 @@ contract EscrowManager {
     event EscrowResolved(uint256 indexed escrowId, address indexed winner, uint256 amount);
 
     constructor(address _rentAgreement) {
-        rentAgreement = RentAgreement(_rentAgreement);
+        rentAgreement = _rentAgreement;
     }
 
     function createEscrow(

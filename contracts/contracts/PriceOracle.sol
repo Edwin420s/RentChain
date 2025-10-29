@@ -54,7 +54,7 @@ contract PriceOracle {
         emit FixedPriceSet(token, price);
     }
 
-    function getPrice(address token) external view returns (uint256) {
+    function getPrice(address token) public view returns (uint256) {
         if (isFixedPrice[token]) {
             return fixedPrices[token];
         } else {

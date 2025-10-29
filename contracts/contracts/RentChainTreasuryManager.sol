@@ -1,14 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+import "./interfaces/IERC20.sol";
+
 import "./RentChainBase.sol";
 import "./RentChainConstants.sol";
 import "./RentChainUtils.sol";
 
-interface IERC20 {
-    function transfer(address to, uint256 amount) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
-}
+
 
 contract RentChainTreasuryManager is RentChainBase {
     using RentChainUtils for address;
@@ -101,7 +100,7 @@ contract RentChainTreasuryManager is RentChainBase {
         string memory stream,
         uint256 amount,
         address token
-    ) external whenNotPaused whenInitialized {
+    ) public whenNotPaused whenInitialized {
         require(revenueStreams[stream].active, "Invalid revenue stream");
         require(amount > 0, "Invalid amount");
 

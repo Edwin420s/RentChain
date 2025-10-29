@@ -1,15 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+import "./interfaces/IERC20.sol";
+
 import "./RentChainBase.sol";
 import "./RentChainConstants.sol";
 import "./RentChainUtils.sol";
 
-interface IERC20 {
-    function transferFrom(address from, address to, uint256 amount) external returns (bool);
-    function transfer(address to, uint256 amount) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
-}
+
 
 interface IAggregatorV3 {
     function latestRoundData() external view returns (uint80, int256, uint256, uint256, uint80);
@@ -126,7 +124,7 @@ contract RentChainIntegration is RentChainBase {
         emit PriceFeedUpdated(token, feedAddress);
     }
 
-    function getPrice(address token) external view returns (uint256) {
+    function getPrice(address token) public view returns (uint256) {
         PriceFeed storage feed = priceFeeds[token];
         require(feed.active, "Price feed not active");
 

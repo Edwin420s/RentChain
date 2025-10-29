@@ -2,6 +2,7 @@
 pragma solidity ^0.8.19;
 
 import "./interfaces/IERC20.sol";
+import "./interfaces/IPropertyRegistry.sol";
 
 contract RentAgreement {
     enum AgreementStatus { Created, Active, Completed, Cancelled, Disputed }
@@ -25,7 +26,7 @@ contract RentAgreement {
     mapping(uint256 => mapping(uint256 => bool)) public rentPayments;
     uint256 public nextAgreementId;
     
-    PropertyRegistry public propertyRegistry;
+    IPropertyRegistry public propertyRegistry;
     
     event AgreementCreated(uint256 indexed agreementId, uint256 indexed propertyId, address landlord, address tenant);
     event RentPaid(uint256 indexed agreementId, address indexed tenant, uint256 amount);
@@ -35,7 +36,7 @@ contract RentAgreement {
     event AgreementCancelled(uint256 indexed agreementId);
 
     constructor(address _propertyRegistry) {
-        propertyRegistry = PropertyRegistry(_propertyRegistry);
+        propertyRegistry = IPropertyRegistry(_propertyRegistry);
     }
 
     function createAgreement(

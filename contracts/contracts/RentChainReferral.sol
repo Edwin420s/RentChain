@@ -1,11 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-interface IERC20 {
-    function transfer(address to, uint256 amount) external returns (bool);
-    function transferFrom(address from, address to, uint256 amount) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
-}
+import "./interfaces/IERC20.sol";
+
+
 
 contract RentChainReferral {
     struct Referral {
@@ -61,7 +59,7 @@ contract RentChainReferral {
         addRewardTier(1500, 201, 0);  // 15% for 201+ referrals
     }
 
-    function registerReferral(address referred, address referrer) external {
+    function registerReferral(address referred, address referrer) public {
         require(referrer != address(0), "Invalid referrer");
         require(referrer != referred, "Cannot refer self");
         require(referrals[referred].referrer == address(0), "Already referred");

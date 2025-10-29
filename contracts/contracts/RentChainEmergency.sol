@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-interface IERC20 {
-    function transfer(address to, uint256 amount) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
-}
+import "./interfaces/IERC20.sol";
+
+
 
 contract RentChainEmergency {
     struct EmergencyState {
@@ -148,7 +147,7 @@ contract RentChainEmergency {
     function processEmergencyWithdrawal(
         bytes32 requestId,
         bool approve
-    ) external onlyEmergencyAdmin {
+    ) public onlyEmergencyAdmin {
         EmergencyWithdrawal storage withdrawal = emergencyWithdrawals[requestId];
         require(!withdrawal.processed, "Already processed");
         require(block.timestamp >= withdrawal.requestedAt + 1 days, "Cooldown period");

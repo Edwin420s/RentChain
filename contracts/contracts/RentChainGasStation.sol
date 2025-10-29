@@ -1,13 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
+import "./interfaces/IERC20.sol";
+
 import "./RentChainBase.sol";
 import "./RentChainConstants.sol";
 
-interface IERC20 {
-    function transferFrom(address from, address to, uint256 amount) external returns (bool);
-    function transfer(address to, uint256 amount) external returns (bool);
-}
+
 
 contract RentChainGasStation is RentChainBase {
     struct GasSponsorship {
