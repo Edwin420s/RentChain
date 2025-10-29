@@ -70,8 +70,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'ethers'],
-    exclude: ['**/__tests__/**', '**/*.test.js', '**/*.test.jsx']
+    include: ['react', 'react-dom', 'ethers']
   },
   esbuild: {
     loader: 'jsx',
