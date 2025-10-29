@@ -10,7 +10,7 @@ export const useWallet = () => {
   return context
 }
 
-export const WalletProvider = ({ children }) => {
+export const WalletProvider = ({ children, onWalletConnected }) => {
   const [isConnected, setIsConnected] = useState(false)
   const [account, setAccount] = useState('')
   const [balance, setBalance] = useState('0')
@@ -24,8 +24,13 @@ export const WalletProvider = ({ children }) => {
         setIsConnected(true)
         setAccount(accounts[0])
         setBalance('0.5')
+        
+        // Trigger callback after successful connection
+        if (onWalletConnected) {
+          onWalletConnected(accounts[0])
+        }
       } catch (error) {
-        // Handle wallet connection error
+        console.error('Wallet connection error:', error)
       }
     } else {
       alert('Please install MetaMask!')

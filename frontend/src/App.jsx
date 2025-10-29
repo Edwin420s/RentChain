@@ -23,7 +23,7 @@ import { useOffline } from './hooks/useOffline'
 import './index.css'
 import './styles/animations.css'
 
-function AppContent() {
+function AppContent({ onWalletConnected }) {
   const [currentPage, setCurrentPage] = useState('home')
   const [selectedProperty, setSelectedProperty] = useState(null)
   const [notification, setNotification] = useState(null)
@@ -32,6 +32,16 @@ function AppContent() {
   
   const analytics = useAnalytics()
   const isOffline = useOffline()
+
+  // Listen for wallet connection event
+  useEffect(() => {
+    if (onWalletConnected) {
+      const hasCompletedOnboarding = localStorage.getItem('zurirent_onboarding_complete')
+      if (!hasCompletedOnboarding) {
+        setShowOnboarding(true)
+      }
+    }
+  }, [onWalletConnected])
 
   useEffect(() => {
     // Initialize analytics
@@ -42,12 +52,6 @@ function AppContent() {
 
     // Check maintenance mode
     checkMaintenanceMode()
-
-    // Check onboarding status
-    const hasCompletedOnboarding = localStorage.getItem('zurirent_onboarding_complete')
-    if (!hasCompletedOnboarding) {
-      setShowOnboarding(true)
-    }
 
     // Track app launch
     analytics.trackEvent('app', 'launch')
@@ -148,13 +152,20 @@ function AppContent() {
 }
 
 function App() {
+  const [walletConnected, setWalletConnected] = useState(false)
+
+  const handleWalletConnected = (account) => {
+    setWalletConnected(true)
+    console.log('Wallet connected:', account)
+  }
+
   return (
     <ErrorBoundary showDetails={import.meta.env.DEV}>
       <HelmetProvider>
         <ThemeProvider>
-          <WalletProvider>
+          <WalletProvider onWalletConnected={handleWalletConnected}>
             <AppProvider>
-              <AppContent />
+              <AppContent onWalletConnected={walletConnected} />
             </AppProvider>
           </WalletProvider>
         </ThemeProvider>
