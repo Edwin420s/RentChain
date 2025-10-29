@@ -131,7 +131,7 @@ process.on('uncaughtException', (error) => {
 
 async function startServer() {
   try {
-    console.log('Starting RentChain Backend...');
+    console.log('Starting ZuriRent Backend...');
     console.log('Environment:', config.NODE_ENV);
     
     // Initialize database

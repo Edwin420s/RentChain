@@ -1,7 +1,7 @@
 {
-  "name": "rentchain-backend",
+  "name": "zurirent-backend",
   "version": "1.0.0",
-  "description": "Backend API for RentChain - Event indexing, payments, notifications",
+  "description": "Backend API for ZuriRent - Event indexing, payments, notifications",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
