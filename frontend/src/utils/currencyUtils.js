@@ -1,4 +1,4 @@
-export const formatCurrency = (amount, currency = 'USD', locale = 'en-US') => {
+export const formatCurrency = (amount, currency = 'KES', locale = 'en-KE') => {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: currency,
@@ -68,7 +68,7 @@ export const validateAmount = (amount, min = 0, max = 1000000) => {
   return true
 }
 
-export const formatAmountRange = (minAmount, maxAmount, currency = 'USD') => {
+export const formatAmountRange = (minAmount, maxAmount, currency = 'KES') => {
   if (minAmount === maxAmount) {
     return formatCurrency(minAmount, currency)
   }

@@ -9,7 +9,7 @@ const AdminDashboard = () => {
   const stats = [
     { icon: <Home className="h-6 w-6" />, label: 'Total Properties', value: '156', change: '+12%' },
     { icon: <Users className="h-6 w-6" />, label: 'Active Tenants', value: '89', change: '+5%' },
-    { icon: <DollarSign className="h-6 w-6" />, label: 'Monthly Revenue', value: '$245K', change: '+18%' },
+    { icon: <DollarSign className="h-6 w-6" />, label: 'Monthly Revenue', value: 'KSh 11M', change: '+18%' },
     { icon: <AlertTriangle className="h-6 w-6" />, label: 'Open Disputes', value: '3', change: '-2' }
   ]
 

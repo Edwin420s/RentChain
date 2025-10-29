@@ -42,7 +42,7 @@ const TenantManagement = ({ tenants }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
               <div className="text-center p-3 bg-secondary rounded-lg">
                 <div className="text-sm text-gray-600">Rent Due</div>
-                <div className="text-lg font-semibold text-text">${tenant.rentDue}</div>
+                <div className="text-lg font-semibold text-text">KSh {tenant.rentDue?.toLocaleString('en-KE')}</div>
               </div>
               <div className="text-center p-3 bg-secondary rounded-lg">
                 <div className="text-sm text-gray-600">Days Remaining</div>

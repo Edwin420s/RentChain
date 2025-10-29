@@ -5,8 +5,8 @@ export const formatAddress = (address) => {
   return `${address.slice(0, 6)}...${address.slice(-4)}`
 }
 
-export const formatCurrency = (amount, currency = 'USD') => {
-  return new Intl.NumberFormat('en-US', {
+export const formatCurrency = (amount, currency = 'KES') => {
+  return new Intl.NumberFormat('en-KE', {
     style: 'currency',
     currency: currency
   }).format(amount)

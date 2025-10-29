@@ -60,7 +60,7 @@ describe('PropertyCard', () => {
   it('applies correct styling for price badge', () => {
     render(<PropertyCard property={mockProperty} onViewDetails={mockOnViewDetails} />)
     
-    const priceBadge = screen.getByText('$45,000/month')
+    const priceBadge = screen.getByText('KSh 45,000/month')
     expect(priceBadge).toHaveClass('bg-white')
   })
 })

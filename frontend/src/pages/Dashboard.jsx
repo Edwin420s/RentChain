@@ -108,7 +108,7 @@ const Dashboard = () => {
                   <div key={property.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                     <div>
                       <h4 className="font-semibold text-text">{property.name}</h4>
-                      <p className="text-sm text-gray-600">Rent: ${property.rent}/month</p>
+                      <p className="text-sm text-gray-600">Rent: KSh {property.rent.toLocaleString('en-KE')}/month</p>
                     </div>
                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                       property.status === 'occupied' 

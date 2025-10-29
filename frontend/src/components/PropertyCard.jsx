@@ -12,7 +12,7 @@ const PropertyCard = ({ property, onViewDetails }) => {
           className="w-full h-full object-cover"
         />
         <div className="absolute top-3 right-3 bg-white px-2 py-1 rounded-full text-sm font-medium text-text">
-          ${property.price}/month
+          KSh {property.price.toLocaleString('en-KE')}/month
         </div>
       </div>
 

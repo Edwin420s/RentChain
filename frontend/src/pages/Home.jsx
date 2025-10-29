@@ -81,7 +81,7 @@ const HomePage = ({ onGetStarted }) => {
               <div className="text-gray-600">Properties Listed</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-text mb-2">$2M+</div>
+              <div className="text-3xl font-bold text-text mb-2">KSh 90M+</div>
               <div className="text-gray-600">In Secured Deposits</div>
             </div>
             <div>
