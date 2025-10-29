@@ -1,4 +1,5 @@
 const paymentService = require('../services/paymentService');
+const { pool } = require('../config/database');
 
 const paymentController = {
   async initiateMpesaPayment(req, res) {

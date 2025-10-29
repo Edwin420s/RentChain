@@ -1,4 +1,5 @@
 const notificationService = require('../services/notificationService');
+const { pool } = require('../config/database');
 
 const notificationController = {
   async getUserNotifications(req, res) {

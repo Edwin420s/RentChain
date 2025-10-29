@@ -1,4 +1,5 @@
 const analyticsService = require('../services/analyticsService');
+const { pool } = require('../config/database');
 
 const analyticsController = {
   async getGeneralAnalytics(req, res) {
