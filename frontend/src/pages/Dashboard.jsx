@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Home, DollarSign, User, Settings } from 'lucide-react'
 import PaymentStatus from '../components/PaymentStatus'
+import ZkAuthStatus from '../components/ZkAuthStatus'
 import { useWallet } from '../context/WalletContext'
 
 const Dashboard = () => {
@@ -142,7 +143,13 @@ const Dashboard = () => {
             {activeTab === 'settings' && (
               <div>
                 <h3 className="text-lg font-semibold text-text mb-4">Account Settings</h3>
-                <div className="space-y-4">
+                <div className="space-y-6">
+                  {/* Zero-Knowledge Authentication Status */}
+                  <div>
+                    <h4 className="text-sm font-medium text-text mb-3">Authentication Status</h4>
+                    <ZkAuthStatus />
+                  </div>
+
                   <div>
                     <label className="block text-sm font-medium text-text mb-2">
                       Wallet Address
