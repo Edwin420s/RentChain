@@ -59,7 +59,7 @@ app.get('/health', (req, res) => {
   const healthCheck = {
     status: 'OK',
     timestamp: new Date().toISOString(),
-    service: 'RentChain Backend',
+    service: 'ZuriRent Backend',
     version: '1.0.0',
     uptime: process.uptime(),
     memory: process.memoryUsage(),
@@ -171,9 +171,9 @@ const swaggerOptions = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'RentChain Backend API',
+      title: 'ZuriRent Backend API',
       version: '1.0.0',
-      description: 'Offchain backend for RentChain - Event indexing, payments, notifications',
+      description: 'Offchain backend for ZuriRent - Event indexing, payments, notifications',
     },
     servers: [
       {
