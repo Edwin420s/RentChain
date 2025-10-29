@@ -24,8 +24,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY healthcheck.sh /healthcheck.sh
 RUN chmod +x /healthcheck.sh
 
-LABEL maintainer="dev@rentchain.xyz"
-LABEL description="RentChain Frontend Application"
+LABEL maintainer="dev@zurirent.xyz"
+LABEL description="ZuriRent Frontend Application"
 
 EXPOSE 80
 

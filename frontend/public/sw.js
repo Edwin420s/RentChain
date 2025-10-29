@@ -1,7 +1,7 @@
-// Service Worker for RentChain PWA
-const CACHE_NAME = 'rentchain-v1.0.0'
-const STATIC_CACHE = 'rentchain-static-v1.0.0'
-const DYNAMIC_CACHE = 'rentchain-dynamic-v1.0.0'
+// Service Worker for ZuriRent PWA
+const CACHE_NAME = 'zurirent-v1.0.0'
+const STATIC_CACHE = 'zurirent-static-v1.0.0'
+const DYNAMIC_CACHE = 'zurirent-dynamic-v1.0.0'
 
 // Assets to cache immediately on install
 const STATIC_ASSETS = [
@@ -181,7 +181,7 @@ self.addEventListener('notificationclick', (event) => {
 // IndexedDB utilities for offline storage
 function openDB() {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open('RentChainOffline', 1)
+    const request = indexedDB.open('ZuriRentOffline', 1)
     
     request.onerror = () => reject(request.error)
     request.onsuccess = () => resolve(request.result)

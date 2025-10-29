@@ -1,4 +1,4 @@
-// Security utilities for RentChain
+// Security utilities for ZuriRent
 
 export const sanitizeHTML = (html) => {
   const temp = document.createElement('div')

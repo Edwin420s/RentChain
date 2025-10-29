@@ -1,6 +1,6 @@
 {
-  "name": "RentChain - Transparent Rental Management",
-  "short_name": "RentChain",
+  "name": "ZuriRent - Transparent Rental Management",
+  "short_name": "ZuriRent",
   "description": "Blockchain-powered rental platform with smart contract escrow and transparent payments",
   "start_url": "/",
   "display": "standalone",
@@ -16,14 +16,14 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "RentChain Desktop Dashboard"
+      "label": "ZuriRent Desktop Dashboard"
     },
     {
       "src": "/screenshots/mobile.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "RentChain Mobile App"
+      "label": "ZuriRent Mobile App"
     }
   ],
   "icons": [

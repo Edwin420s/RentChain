@@ -9,7 +9,7 @@ services:
       - "3000:80"
     environment:
       - NODE_ENV=production
-      - VITE_API_BASE_URL=https://api.rentchain.xyz
+      - VITE_API_BASE_URL=https://api.zurirent.xyz
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/healthcheck.sh"]
@@ -19,9 +19,9 @@ services:
       start_period: 40s
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.rentchain.rule=Host(`rentchain.xyz`)"
-      - "traefik.http.routers.rentchain.tls=true"
-      - "traefik.http.routers.rentchain.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.zurirent.rule=Host(`zurirent.xyz`)"
+      - "traefik.http.routers.zurirent.tls=true"
+      - "traefik.http.routers.zurirent.tls.certresolver=letsencrypt"
 
   # Redis for caching (optional)
   redis:
@@ -52,4 +52,4 @@ services:
 
 networks:
   default:
-    name: rentchain-network
+    name: zurirent-network

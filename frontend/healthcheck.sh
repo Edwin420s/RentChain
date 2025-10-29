@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Health check for RentChain frontend
+# Health check for ZuriRent frontend
 # Returns 0 if healthy, 1 if unhealthy
 
 # Check if nginx is running
