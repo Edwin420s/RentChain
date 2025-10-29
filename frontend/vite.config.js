@@ -4,16 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   plugins: [
-    react({
-      babel: {
-        plugins: [
-          ['babel-plugin-styled-components', {
-            displayName: true,
-            fileName: false
-          }]
-        ]
-      }
-    }),
+    react(),
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
@@ -80,7 +71,12 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'ethers'],
-    exclude: ['__tests__', '**/*.test.*']
+    exclude: ['**/__tests__/**', '**/*.test.js', '**/*.test.jsx']
+  },
+  esbuild: {
+    loader: 'jsx',
+    include: /src\/.*\.jsx?$/,
+    exclude: []
   },
   test: {
     globals: true,

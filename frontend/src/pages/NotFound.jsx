@@ -1,10 +1,7 @@
 import React from 'react'
 import { Home, ArrowLeft, Search } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 
-const NotFound = () => {
-  const navigate = useNavigate()
-
+const NotFound = ({ onPageChange }) => {
   return (
     <div className="min-h-screen bg-secondary flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center">
@@ -18,7 +15,7 @@ const NotFound = () => {
 
         <div className="space-y-4">
           <button
-            onClick={() => navigate('/')}
+            onClick={() => onPageChange ? onPageChange('home') : window.location.href = '/'}
             className="w-full bg-primary text-white py-3 px-6 rounded-lg hover:bg-blue-800 transition-colors font-medium flex items-center justify-center space-x-2"
           >
             <Home className="h-5 w-5" />
@@ -26,7 +23,7 @@ const NotFound = () => {
           </button>
 
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => window.history.back()}
             className="w-full bg-secondary text-text py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors font-medium flex items-center justify-center space-x-2"
           >
             <ArrowLeft className="h-5 w-5" />
@@ -34,7 +31,7 @@ const NotFound = () => {
           </button>
 
           <button
-            onClick={() => navigate('/search')}
+            onClick={() => onPageChange ? onPageChange('search') : window.location.href = '/search'}
             className="w-full bg-white border border-gray-300 text-text py-3 px-6 rounded-lg hover:bg-gray-50 transition-colors font-medium flex items-center justify-center space-x-2"
           >
             <Search className="h-5 w-5" />

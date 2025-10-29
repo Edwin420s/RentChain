@@ -105,7 +105,7 @@ function AppContent() {
       case 'admin':
         return <AdminDashboard />
       case 'not-found':
-        return <NotFound />
+        return <NotFound onPageChange={handlePageChange} />
       default:
         return <Home onGetStarted={() => handlePageChange('search')} />
     }
