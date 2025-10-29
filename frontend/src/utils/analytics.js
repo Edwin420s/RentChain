@@ -40,10 +40,10 @@ class Analytics {
   }
 
   generateUserId() {
-    let userId = localStorage.getItem('rentchain_user_id')
+    let userId = localStorage.getItem('zurirent_user_id')
     if (!userId) {
       userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
-      localStorage.setItem('rentchain_user_id', userId)
+      localStorage.setItem('zurirent_user_id', userId)
     }
     return userId
   }
@@ -173,11 +173,11 @@ class Analytics {
     if (!this.enabled) return
 
     this.userProperties = { ...this.userProperties, ...properties }
-    localStorage.setItem('rentchain_user_properties', JSON.stringify(this.userProperties))
+    localStorage.setItem('zurirent_user_properties', JSON.stringify(this.userProperties))
   }
 
   getUserProperties() {
-    return this.userProperties || JSON.parse(localStorage.getItem('rentchain_user_properties') || '{}')
+    return this.userProperties || JSON.parse(localStorage.getItem('zurirent_user_properties') || '{}')
   }
 
   // E-commerce tracking

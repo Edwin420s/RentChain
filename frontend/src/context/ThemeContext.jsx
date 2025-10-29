@@ -12,7 +12,7 @@ export const useTheme = () => {
 }
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useLocalStorage('rentchain_theme', 'light')
+  const [theme, setTheme] = useLocalStorage('zurirent_theme', 'light')
 
   useEffect(() => {
     const root = window.document.documentElement

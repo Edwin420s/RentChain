@@ -3,7 +3,7 @@ import { Sun, Moon } from 'lucide-react'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useLocalStorage('rentchain_theme', 'light')
+  const [theme, setTheme] = useLocalStorage('zurirent_theme', 'light')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {

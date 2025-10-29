@@ -27,8 +27,8 @@ export default defineConfig({
         ]
       },
       manifest: {
-        name: 'RentChain - Transparent Rental Management',
-        short_name: 'RentChain',
+        name: 'ZuriRent - Transparent Rental Management',
+        short_name: 'ZuriRent',
         description: 'Blockchain-powered rental platform with smart contract escrow',
         theme_color: '#1E3A8A',
         background_color: '#ffffff',

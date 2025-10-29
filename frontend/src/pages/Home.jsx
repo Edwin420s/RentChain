@@ -30,7 +30,7 @@ const HomePage = ({ onGetStarted }) => {
               Rent Smarter with Blockchain
             </h1>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
-              RentChain brings transparency and security to rental housing through smart contracts, escrow protection, and verified listings.
+              ZuriRent brings transparency and security to rental housing through smart contracts, escrow protection, and verified listings.
             </p>
             <button
               onClick={onGetStarted}
@@ -47,7 +47,7 @@ const HomePage = ({ onGetStarted }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-text mb-4">
-              Why Choose RentChain?
+              Why Choose ZuriRent?
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               We're building the future of rental housing with Web3 technology

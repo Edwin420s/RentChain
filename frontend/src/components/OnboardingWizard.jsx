@@ -41,7 +41,7 @@ const OnboardingWizard = ({ onComplete }) => {
             <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto">
               <Home className="h-8 w-8 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-text">Welcome to RentChain</h2>
+            <h2 className="text-2xl font-bold text-text">Welcome to ZuriRent</h2>
             <p className="text-gray-600">
               Let's set up your account. Are you looking to rent properties or list your own?
             </p>
@@ -126,7 +126,7 @@ const OnboardingWizard = ({ onComplete }) => {
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-text">Identity Verification</h2>
             <p className="text-gray-600">
-              Verify your identity to build trust in the RentChain community.
+              Verify your identity to build trust in the ZuriRent community.
             </p>
             
             <div className="space-y-4">
@@ -179,7 +179,7 @@ const OnboardingWizard = ({ onComplete }) => {
             </div>
             <h2 className="text-2xl font-bold text-text">Setup Complete!</h2>
             <p className="text-gray-600">
-              Your RentChain account is ready. Start exploring the platform and {userData.role === 'tenant' ? 'find your perfect home' : 'list your properties'}.
+              Your ZuriRent account is ready. Start exploring the platform and {userData.role === 'tenant' ? 'find your perfect home' : 'list your properties'}.
             </p>
             <div className="bg-secondary rounded-lg p-4 text-left">
               <h3 className="font-semibold text-text mb-2">Next Steps:</h3>

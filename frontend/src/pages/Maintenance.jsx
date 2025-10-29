@@ -11,7 +11,7 @@ const Maintenance = () => {
           </div>
           <h1 className="text-3xl font-bold text-text mb-2">Under Maintenance</h1>
           <p className="text-gray-600">
-            RentChain is currently undergoing scheduled maintenance. We'll be back online shortly.
+            ZuriRent is currently undergoing scheduled maintenance. We'll be back online shortly.
           </p>
         </div>
 

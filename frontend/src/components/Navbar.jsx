@@ -19,7 +19,7 @@ const Navbar = ({ currentPage, onPageChange, onPropertySelect }) => {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Home className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-semibold text-text">RentChain</span>
+            <span className="text-xl font-semibold text-text">ZuriRent</span>
           </div>
 
           {/* Navigation Links */}

@@ -167,7 +167,7 @@ const TransactionHistory = ({ transactions }) => {
           <div className="text-center py-12">
             <div className="text-gray-400 text-lg mb-2">No transactions found</div>
             <div className="text-gray-500 text-sm">
-              {searchTerm ? 'Try adjusting your search terms' : 'Transactions will appear here once you start using RentChain'}
+              {searchTerm ? 'Try adjusting your search terms' : 'Transactions will appear here once you start using ZuriRent'}
             </div>
           </div>
         )}

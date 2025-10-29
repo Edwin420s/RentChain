@@ -89,7 +89,7 @@ const appReducer = (state, action) => {
 
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState)
-  const [cachedData, setCachedData] = useLocalStorage('rentchain_cache', {})
+  const [cachedData, setCachedData] = useLocalStorage('zurirent_cache', {})
   const { account, isConnected } = useWeb3()
   const { contracts, listenToAgreementEvents } = useContracts()
 

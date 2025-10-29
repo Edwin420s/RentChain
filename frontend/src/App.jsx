@@ -44,7 +44,7 @@ function AppContent() {
     checkMaintenanceMode()
 
     // Check onboarding status
-    const hasCompletedOnboarding = localStorage.getItem('rentchain_onboarding_complete')
+    const hasCompletedOnboarding = localStorage.getItem('zurirent_onboarding_complete')
     if (!hasCompletedOnboarding) {
       setShowOnboarding(true)
     }
@@ -55,7 +55,7 @@ function AppContent() {
 
   const checkMaintenanceMode = async () => {
     try {
-      const maintenanceMode = localStorage.getItem('rentchain_maintenance')
+      const maintenanceMode = localStorage.getItem('zurirent_maintenance')
       if (maintenanceMode === 'true') {
         setIsMaintenance(true)
       }
@@ -73,9 +73,9 @@ function AppContent() {
   }
 
   const handleOnboardingComplete = (userData) => {
-    localStorage.setItem('rentchain_onboarding_complete', 'true')
+    localStorage.setItem('zurirent_onboarding_complete', 'true')
     setShowOnboarding(false)
-    showNotification('Welcome to RentChain!', 'success')
+    showNotification('Welcome to ZuriRent!', 'success')
     
     analytics.trackEvent('onboarding', 'completed')
     analytics.setUserProperties({

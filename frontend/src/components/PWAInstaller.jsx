@@ -73,7 +73,7 @@ const PWAInstaller = () => {
         
         <div className="flex-1">
           <h3 className="font-semibold text-text text-sm mb-1">
-            Install RentChain App
+            Install ZuriRent App
           </h3>
           <p className="text-gray-600 text-xs mb-3">
             Install our app for a better experience with offline support and faster loading.

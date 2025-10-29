@@ -1,4 +1,4 @@
-// Utility functions for the RentChain application
+// Utility functions for the ZuriRent application
 
 export const formatAddress = (address) => {
   if (!address) return ''

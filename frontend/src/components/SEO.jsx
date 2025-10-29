@@ -2,15 +2,15 @@ import React from 'react'
 import { Helmet } from 'react-helmet-async'
 
 const SEO = ({ 
-  title = 'RentChain - Transparent Rental Management',
-  description = 'RentChain brings transparency and security to rental housing through blockchain technology. Find verified properties, secure deposits with smart contracts, and rent with confidence.',
+  title = 'ZuriRent - Transparent Rental Management',
+  description = 'ZuriRent brings transparency and security to rental housing through blockchain technology. Find verified properties, secure deposits with smart contracts, and rent with confidence.',
   keywords = 'rental, blockchain, smart contracts, housing, real estate, web3, deposits, escrow',
   image = '/og-image.jpg',
-  url = 'https://rentchain.xyz',
+  url = 'https://zurirent.xyz',
   type = 'website',
   children 
 }) => {
-  const fullTitle = title.includes('RentChain') ? title : `${title} | RentChain`
+  const fullTitle = title.includes('ZuriRent') ? title : `${title} | ZuriRent`
   
   return (
     <Helmet>
@@ -26,7 +26,7 @@ const SEO = ({
       <meta property="og:image" content={image} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content={type} />
-      <meta property="og:site_name" content="RentChain" />
+      <meta property="og:site_name" content="ZuriRent" />
       
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -44,13 +44,13 @@ const SEO = ({
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          "name": "RentChain",
+          "name": "ZuriRent",
           "description": description,
           "url": url,
           "logo": `${url}/logo.png`,
           "sameAs": [
-            "https://twitter.com/rentchain",
-            "https://github.com/rentchain"
+            "https://twitter.com/zurirent",
+            "https://github.com/zurirent"
           ]
         })}
       </script>
