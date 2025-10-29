@@ -164,9 +164,11 @@ function App() {
       <HelmetProvider>
         <ThemeProvider>
           <WalletProvider onWalletConnected={handleWalletConnected}>
-            <AppProvider>
-              <AppContent onWalletConnected={walletConnected} />
-            </AppProvider>
+            <ZkLoginProvider>
+              <AppProvider>
+                <AppContent onWalletConnected={walletConnected} />
+              </AppProvider>
+            </ZkLoginProvider>
           </WalletProvider>
         </ThemeProvider>
       </HelmetProvider>
