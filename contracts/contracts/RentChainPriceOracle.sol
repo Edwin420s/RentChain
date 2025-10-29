@@ -87,7 +87,7 @@ contract RentChainPriceOracle is RentChainBase {
         );
     }
 
-    function getPrice(address token) external view returns (uint256) {
+    function getPrice(address token) public view returns (uint256) {
         TokenConfig storage config = tokenConfigs[token];
         require(config.active, "Token not configured");
         require(config.lastUpdate > 0, "No price data");
@@ -106,7 +106,7 @@ contract RentChainPriceOracle is RentChainBase {
         return (data.price, data.timestamp);
     }
 
-    function updatePrice(address token) external onlyAuthorizedOracle {
+    function updatePrice(address token) public onlyAuthorizedOracle {
         TokenConfig storage config = tokenConfigs[token];
         require(config.active, "Token not configured");
 

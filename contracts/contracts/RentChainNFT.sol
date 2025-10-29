@@ -48,7 +48,7 @@ contract RentChainNFT {
     function mintPropertyNFT(
         uint256 propertyId,
         string memory tokenURI
-    ) external onlyPropertyOwner(propertyId) returns (uint256) {
+    ) public onlyPropertyOwner(propertyId) returns (uint256) {
         require(propertyToTokenId[propertyId] == 0, "NFT already minted");
         
         uint256 tokenId = nextTokenId++;

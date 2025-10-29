@@ -121,9 +121,9 @@ library RentChainConstants {
     }
 
     // Platform Addresses (would be set in deployment)
-    address public constant TREASURY_ADDRESS = 0x742d35Cc6634C0532925a3b8Dc9F5A6f6E8c6f5e;
-    address public constant DEVELOPMENT_ADDRESS = 0x742d35Cc6634C0532925a3b8Dc9F5A6f6E8c6f5e;
-    address public constant MARKETING_ADDRESS = 0x742d35Cc6634C0532925a3b8Dc9F5A6f6E8c6f5e;
+    address public constant TREASURY_ADDRESS = 0x742d35cC6634c0532925a3b8dc9f5A6F6e8c6F5e;
+    address public constant DEVELOPMENT_ADDRESS = 0x742d35cC6634c0532925a3b8dc9f5A6F6e8c6F5e;
+    address public constant MARKETING_ADDRESS = 0x742d35cC6634c0532925a3b8dc9f5A6F6e8c6F5e;
 
     // Supported Tokens
     address public constant NATIVE_TOKEN = address(0);

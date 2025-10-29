@@ -313,7 +313,7 @@ contract RentChainTreasuryManager is RentChainBase {
         return tokenBalances[token];
     }
 
-    receive() external payable {
+    receive() external payable override {
         receiveRevenue("direct_deposit", msg.value, address(0));
     }
 }

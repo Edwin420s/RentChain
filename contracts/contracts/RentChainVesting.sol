@@ -67,7 +67,7 @@ contract RentChainVesting is RentChainBase {
         uint256 cliff,
         bool revocable,
         VestingCondition[] memory conditions
-    ) external onlyVestingAdmin returns (uint256) {
+    ) public onlyVestingAdmin returns (uint256) {
         require(beneficiary != address(0), "Invalid beneficiary");
         require(amount > 0, "Invalid amount");
         require(duration >= MIN_DURATION && duration <= MAX_DURATION, "Invalid duration");
@@ -103,7 +103,7 @@ contract RentChainVesting is RentChainBase {
         return scheduleId;
     }
 
-    function release(uint256 scheduleId) external whenNotPaused whenInitialized {
+    function release(uint256 scheduleId) public whenNotPaused whenInitialized {
         VestingSchedule storage schedule = vestingSchedules[scheduleId];
         require(schedule.beneficiary == msg.sender, "Not beneficiary");
         require(!schedule.revoked, "Vesting revoked");

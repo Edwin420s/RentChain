@@ -85,7 +85,7 @@ contract RentChainRewardsEngine is RentChainBase {
         address user,
         string memory activityType,
         uint256 baseAmount
-    ) external onlyRewardsManager whenNotPaused whenInitialized {
+    ) public onlyRewardsManager whenNotPaused whenInitialized {
         RewardActivity storage activity = rewardActivities[activityType];
         require(activity.points > 0, "Activity not registered");
 

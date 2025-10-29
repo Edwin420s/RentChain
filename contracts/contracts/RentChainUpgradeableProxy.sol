@@ -64,11 +64,11 @@ contract RentChainUpgradeableProxy is RentChainBase {
         return _getImplementation();
     }
 
-    function admin() external view returns (address) {
+    function getProxyAdmin() external view returns (address) {
         return _getAdmin();
     }
 
-    receive() external payable {
+    receive() external payable override {
         _delegate(_getImplementation());
     }
 

@@ -400,14 +400,14 @@ contract RentChainMain is RentChainBase {
         uint256 rentAmount,
         uint256 securityDeposit,
         uint256 duration
-    ) internal pure {
+    ) internal pure override {
         require(rentAmount > 0, "Rent amount must be positive");
         require(securityDeposit <= rentAmount * RentChainConstants.MAX_SECURITY_DEPOSIT_MULTIPLIER, "Deposit too high");
         require(duration >= RentChainConstants.MIN_RENTAL_DURATION, "Duration too short");
         require(duration <= RentChainConstants.MAX_RENTAL_DURATION, "Duration too long");
     }
 
-    function calculatePlatformFee(uint256 amount) internal pure returns (uint256) {
+    function calculatePlatformFee(uint256 amount) internal pure override returns (uint256) {
         return RentChainConstants.calculatePlatformFee(amount);
     }
 
@@ -466,7 +466,7 @@ contract RentChainMain is RentChainBase {
     }
 
     // Fallback with comprehensive system check
-    receive() external payable {
+    receive() external payable override {
         require(systemActive, "System not active");
         require(msg.value > 0, "No value sent");
         

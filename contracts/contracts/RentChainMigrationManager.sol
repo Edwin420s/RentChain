@@ -60,7 +60,7 @@ contract RentChainMigrationManager is RentChainBase {
         uint256 startTime,
         uint256 duration,
         uint256 cap
-    ) external onlyAuthorizedMigrator returns (uint256) {
+    ) public onlyAuthorizedMigrator returns (uint256) {
         require(fromToken != toToken, "Same tokens");
         require(exchangeRate > 0, "Invalid exchange rate");
         require(startTime >= block.timestamp, "Invalid start time");
@@ -82,7 +82,7 @@ contract RentChainMigrationManager is RentChainBase {
         return poolId;
     }
 
-    function migrateTokens(uint256 poolId, uint256 amount) external whenNotPaused whenInitialized {
+    function migrateTokens(uint256 poolId, uint256 amount) public whenNotPaused whenInitialized {
         MigrationPool storage pool = migrationPools[poolId];
         require(pool.active, "Pool not active");
         require(block.timestamp >= pool.startTime, "Migration not started");

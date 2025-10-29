@@ -25,7 +25,8 @@ abstract contract RentChainBase {
     }
 
     modifier whenNotPaused() {
-        require(!emergencySystem.emergencyState().systemPaused, RentChainConstants.ERROR_SYSTEM_PAUSED);
+        (bool systemPaused, , , , , , , ) = emergencySystem.getEmergencyStatus();
+        require(!systemPaused, RentChainConstants.ERROR_SYSTEM_PAUSED);
         _;
     }
 
@@ -98,7 +99,7 @@ abstract contract RentChainBase {
     }
 
     // Utility functions for derived contracts
-    function calculatePlatformFee(uint256 amount) internal pure returns (uint256) {
+    function calculatePlatformFee(uint256 amount) internal pure virtual returns (uint256) {
         return RentChainUtils.percentage(amount, RentChainConstants.PLATFORM_FEE_BP);
     }
 
@@ -110,7 +111,7 @@ abstract contract RentChainBase {
         uint256 rentAmount,
         uint256 depositAmount,
         uint256 duration
-    ) internal pure {
+    ) internal pure virtual {
         RentChainUtils.validateRentAmount(rentAmount);
         RentChainUtils.validateDuration(duration);
         RentChainUtils.validateDepositAmount(rentAmount, depositAmount);
@@ -145,7 +146,8 @@ abstract contract RentChainBase {
 
     // State verification functions
     function isSystemPaused() public view returns (bool) {
-        return emergencySystem.emergencyState().systemPaused;
+        (bool systemPaused, , , , , , , ) = emergencySystem.getEmergencyStatus();
+        return systemPaused;
     }
 
     function getPauseInfo() public view returns (
@@ -154,12 +156,12 @@ abstract contract RentChainBase {
         uint256 pauseEnd,
         string memory reason
     ) {
-        RentChainEmergency.EmergencyState memory state = emergencySystem.emergencyState();
+        (bool paused, , , , uint256 pauseStart, uint256 duration, string memory reason, ) = emergencySystem.getEmergencyStatus();
         return (
-            state.systemPaused,
-            state.pauseStartTime,
-            state.pauseStartTime + state.pauseDuration,
-            state.pauseReason
+            paused,
+            pauseStart,
+            pauseStart + duration,
+            reason
         );
     }
 
@@ -186,7 +188,7 @@ abstract contract RentChainBase {
     }
 
     // Fallback function to prevent accidental ether sends
-    receive() external payable {
+    receive() external payable virtual {
         revert("Direct ether transfers not allowed");
     }
 
@@ -196,7 +198,7 @@ abstract contract RentChainBase {
         uint256 amount,
         address recipient
     ) external onlyAdmin {
-        require(emergencySystem.emergencyState().systemPaused, "System not paused");
+        require(isSystemPaused(), "System not paused");
         
         if (token == address(0)) {
             payable(recipient).transfer(amount);
