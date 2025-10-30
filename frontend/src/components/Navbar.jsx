@@ -1,13 +1,25 @@
 import React from 'react'
-import { Home, Search, User, Wallet } from 'lucide-react'
+import { Home, Search, User, Wallet, AlertCircle } from 'lucide-react'
 import { useWallet } from '../context/WalletContext'
 import ZkLoginButton from './ZkLoginButton'
 
 const Navbar = ({ currentPage, onPageChange, onPropertySelect }) => {
-  const { isConnected, account, connectWallet, disconnectWallet } = useWallet()
+  const { 
+    isConnected, 
+    account, 
+    balance,
+    isCorrectNetwork,
+    connectWallet, 
+    disconnectWallet,
+    switchToScrollSepolia 
+  } = useWallet()
 
   const formatAddress = (addr) => {
     return `${addr.slice(0, 6)}...${addr.slice(-4)}`
+  }
+
+  const formatBalance = (bal) => {
+    return parseFloat(bal).toFixed(4)
   }
 
   return (
@@ -65,12 +77,31 @@ const Navbar = ({ currentPage, onPageChange, onPropertySelect }) => {
             
             {isConnected ? (
               <div className="flex items-center space-x-3">
+                {/* Network Warning */}
+                {!isCorrectNetwork && (
+                  <button
+                    onClick={switchToScrollSepolia}
+                    className="flex items-center space-x-2 bg-yellow-100 border-2 border-yellow-400 text-yellow-800 px-3 py-2 rounded-lg hover:bg-yellow-200 transition-colors"
+                    title="Switch to Scroll Sepolia"
+                  >
+                    <AlertCircle className="h-4 w-4" />
+                    <span className="text-sm font-medium">Wrong Network</span>
+                  </button>
+                )}
+                
+                {/* Balance & Address */}
                 <div className="flex items-center space-x-2 bg-secondary px-3 py-2 rounded-lg">
                   <Wallet className="h-4 w-4 text-text" />
-                  <span className="text-sm font-medium text-text">
-                    {formatAddress(account)}
-                  </span>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-gray-500">
+                      {formatBalance(balance)} ETH
+                    </span>
+                    <span className="text-sm font-medium text-text">
+                      {formatAddress(account)}
+                    </span>
+                  </div>
                 </div>
+                
                 <button
                   onClick={disconnectWallet}
                   className="bg-error text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors text-sm font-medium"
@@ -81,9 +112,10 @@ const Navbar = ({ currentPage, onPageChange, onPropertySelect }) => {
             ) : (
               <button
                 onClick={connectWallet}
-                className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition-colors font-medium"
+                className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition-colors font-medium flex items-center space-x-2"
               >
-                Connect Wallet
+                <Wallet className="h-5 w-5" />
+                <span>Connect Wallet</span>
               </button>
             )}
           </div>

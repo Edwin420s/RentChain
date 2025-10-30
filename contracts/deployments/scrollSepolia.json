@@ -1,0 +1,17 @@
+{
+  "network": "scrollSepolia",
+  "chainId": "534351",
+  "deployer": "0x380b9ac22572a3228D545Aba2d2B06c9e8F113ef",
+  "timestamp": "2025-10-30T10:00:37.542Z",
+  "contracts": {
+    "RentChainToken": "0x0dE300448bd1Da7E4f0CD7194E20d37cB653735f",
+    "UserRegistry": "0x55600022509e6c803B9c53eE7d2C199aC6F0253B",
+    "PropertyRegistry": "0xBB00A9EB2aCb44ca08d0A097311572D780568E10",
+    "RentAgreement": "0x9FfbF6526dB7936510aB9811778A2BC26c17Df6a",
+    "EscrowManager": "0x31a0cB3C2b65d5A7630F47C0b692CfA772D07bfd",
+    "PaymentProcessor": "0x98F78dB24726321E2635AE3DA06896a7AcA90209",
+    "DisputeResolution": "0x87EEa40B1B685F551058F8f391cEE4BA0Ea2A419",
+    "ReviewSystem": "0x0b3464d0BCC10A1BE2dD2ac798D061BAff80C38C",
+    "RentChainMain": "0x0000000000000000000000000000000000000000"
+  }
+}

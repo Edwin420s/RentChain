@@ -7,7 +7,12 @@ async function main() {
 
   const [deployer] = await hre.ethers.getSigners();
   const network = hre.network.name;
-  
+
+  if (!deployer) {
+    console.error("❌ No deployer account found. Please ensure PRIVATE_KEY is set in your .env file for the scrollSepolia network.");
+    process.exit(1);
+  }
+
   console.log("📍 Network:", network);
   console.log("👤 Deployer address:", deployer.address);
   console.log("💰 Deployer balance:", hre.ethers.formatEther(await hre.ethers.provider.getBalance(deployer.address)), "ETH\n");
@@ -40,39 +45,7 @@ async function main() {
     deployedContracts.PropertyRegistry = await propertyRegistry.getAddress();
     console.log("✅ PropertyRegistry deployed to:", deployedContracts.PropertyRegistry, "\n");
 
-    // 4. Deploy EscrowManager
-    console.log("📝 Deploying EscrowManager...");
-    const EscrowManager = await hre.ethers.getContractFactory("EscrowManager");
-    const escrowManager = await EscrowManager.deploy();
-    await escrowManager.waitForDeployment();
-    deployedContracts.EscrowManager = await escrowManager.getAddress();
-    console.log("✅ EscrowManager deployed to:", deployedContracts.EscrowManager, "\n");
-
-    // 5. Deploy PaymentProcessor
-    console.log("📝 Deploying PaymentProcessor...");
-    const PaymentProcessor = await hre.ethers.getContractFactory("PaymentProcessor");
-    const paymentProcessor = await PaymentProcessor.deploy();
-    await paymentProcessor.waitForDeployment();
-    deployedContracts.PaymentProcessor = await paymentProcessor.getAddress();
-    console.log("✅ PaymentProcessor deployed to:", deployedContracts.PaymentProcessor, "\n");
-
-    // 6. Deploy DisputeResolution
-    console.log("📝 Deploying DisputeResolution...");
-    const DisputeResolution = await hre.ethers.getContractFactory("DisputeResolution");
-    const disputeResolution = await DisputeResolution.deploy();
-    await disputeResolution.waitForDeployment();
-    deployedContracts.DisputeResolution = await disputeResolution.getAddress();
-    console.log("✅ DisputeResolution deployed to:", deployedContracts.DisputeResolution, "\n");
-
-    // 7. Deploy ReviewSystem
-    console.log("📝 Deploying ReviewSystem...");
-    const ReviewSystem = await hre.ethers.getContractFactory("ReviewSystem");
-    const reviewSystem = await ReviewSystem.deploy();
-    await reviewSystem.waitForDeployment();
-    deployedContracts.ReviewSystem = await reviewSystem.getAddress();
-    console.log("✅ ReviewSystem deployed to:", deployedContracts.ReviewSystem, "\n");
-
-    // 8. Deploy RentAgreement
+    // 4. Deploy RentAgreement
     console.log("📝 Deploying RentAgreement...");
     const RentAgreement = await hre.ethers.getContractFactory("RentAgreement");
     const rentAgreement = await RentAgreement.deploy(
@@ -82,13 +55,42 @@ async function main() {
     deployedContracts.RentAgreement = await rentAgreement.getAddress();
     console.log("✅ RentAgreement deployed to:", deployedContracts.RentAgreement, "\n");
 
-    // 9. Deploy RentChainMain (Main Orchestrator)
-    console.log("📝 Deploying RentChainMain...");
-    const RentChainMain = await hre.ethers.getContractFactory("RentChainMain");
-    const rentChainMain = await RentChainMain.deploy();
-    await rentChainMain.waitForDeployment();
-    deployedContracts.RentChainMain = await rentChainMain.getAddress();
-    console.log("✅ RentChainMain deployed to:", deployedContracts.RentChainMain, "\n");
+    // 5. Deploy EscrowManager
+    console.log("📝 Deploying EscrowManager...");
+    const EscrowManager = await hre.ethers.getContractFactory("EscrowManager");
+    const escrowManager = await EscrowManager.deploy(deployedContracts.RentAgreement);
+    await escrowManager.waitForDeployment();
+    deployedContracts.EscrowManager = await escrowManager.getAddress();
+    console.log("✅ EscrowManager deployed to:", deployedContracts.EscrowManager, "\n");
+
+    // 6. Deploy PaymentProcessor
+    console.log("📝 Deploying PaymentProcessor...");
+    const PaymentProcessor = await hre.ethers.getContractFactory("PaymentProcessor");
+    const paymentProcessor = await PaymentProcessor.deploy();
+    await paymentProcessor.waitForDeployment();
+    deployedContracts.PaymentProcessor = await paymentProcessor.getAddress();
+    console.log("✅ PaymentProcessor deployed to:", deployedContracts.PaymentProcessor, "\n");
+
+    // 7. Deploy DisputeResolution
+    console.log("📝 Deploying DisputeResolution...");
+    const DisputeResolution = await hre.ethers.getContractFactory("DisputeResolution");
+    const disputeResolution = await DisputeResolution.deploy();
+    await disputeResolution.waitForDeployment();
+    deployedContracts.DisputeResolution = await disputeResolution.getAddress();
+    console.log("✅ DisputeResolution deployed to:", deployedContracts.DisputeResolution, "\n");
+
+    // 8. Deploy ReviewSystem
+    console.log("📝 Deploying ReviewSystem...");
+    const ReviewSystem = await hre.ethers.getContractFactory("ReviewSystem");
+    const reviewSystem = await ReviewSystem.deploy();
+    await reviewSystem.waitForDeployment();
+    deployedContracts.ReviewSystem = await reviewSystem.getAddress();
+    console.log("✅ ReviewSystem deployed to:", deployedContracts.ReviewSystem, "\n");
+
+    // 9. Skip RentChainMain deployment due to contract size limits
+    console.log("⚠️ Skipping RentChainMain deployment due to contract size limits on Scroll Sepolia");
+    console.log("   All core contracts have been deployed successfully\n");
+    deployedContracts.RentChainMain = "0x0000000000000000000000000000000000000000"; // Placeholder
 
     // Save deployment addresses to file
     const deploymentInfo = {
@@ -141,6 +143,9 @@ VITE_CONTRACT_ADDRESS_USER_REGISTRY=${deployedContracts.UserRegistry}
 VITE_CONTRACT_ADDRESS_DISPUTE=${deployedContracts.DisputeResolution}
 VITE_CONTRACT_ADDRESS_REVIEW=${deployedContracts.ReviewSystem}
 VITE_CONTRACT_ADDRESS_TOKEN=${deployedContracts.RentChainToken}
+
+# Note: RentChainMain was skipped due to contract size limits on Scroll Sepolia
+# Deploy to mainnet or use a proxy pattern for full functionality
 `;
 
     const envPath = path.join(__dirname, "..", "deployments", `${network}.env`);
