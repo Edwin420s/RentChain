@@ -380,7 +380,7 @@ contract RentChainLiquidityManager is RentChainBase {
         }
     }
 
-    receive() external payable {
+    receive() external payable override {
         // Accept native token for liquidity
     }
 }

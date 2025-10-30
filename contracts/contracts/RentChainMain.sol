@@ -361,11 +361,12 @@ contract RentChainMain is RentChainBase {
         require(systemActive, "System not active");
 
         // Prepare user data for cross-chain sync
+        (, , , , , uint256 reputation, , uint256 totalTransactions) = userRegistry.users(user);
         bytes memory userData = abi.encode(
             user,
-            userRegistry.users(user).propertiesListed,
+            totalTransactions,
             rentAgreement.getLandlordAgreements(user).length + rentAgreement.getTenantAgreements(user).length,
-            reviewSystem.calculateAverageRating(user)
+            reputation
         );
 
         return multiChain.createCrossChainRequest(targetChain, userData);

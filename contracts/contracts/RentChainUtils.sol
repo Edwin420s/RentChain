@@ -156,7 +156,7 @@ library RentChainUtils {
         uint256 rentAmount,
         uint256 startDate,
         uint256 endDate
-    ) internal pure returns (bytes32) {
+    ) internal view returns (bytes32) {
         return keccak256(
             abi.encodePacked(
                 landlord,
@@ -175,7 +175,7 @@ library RentChainUtils {
         string memory location,
         uint256 price,
         string memory ipfsHash
-    ) internal pure returns (bytes32) {
+    ) internal view returns (bytes32) {
         return keccak256(
             abi.encodePacked(
                 owner,

@@ -209,7 +209,7 @@ contract RentChainV2 {
         propertyCount = propertyRegistry.getOwnerProperties(user).length;
         agreementCount = rentAgreement.getLandlordAgreements(user).length + 
                          rentAgreement.getTenantAgreements(user).length;
-        totalStaked = stakingRewards.stakes(user).amount;
+        (totalStaked,,,) = stakingRewards.getStakeInfo(user);
         pendingRewards = userRewards[user] + stakingRewards.earned(user);
         userRating = reviewSystem.calculateAverageRating(user);
         isPremium = premiumUsers[user];

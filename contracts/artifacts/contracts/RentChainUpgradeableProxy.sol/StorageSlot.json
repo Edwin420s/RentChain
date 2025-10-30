@@ -1,0 +1,10 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "StorageSlot",
+  "sourceName": "contracts/RentChainUpgradeableProxy.sol",
+  "abi": [],
+  "bytecode": "0x60808060405234601757603a9081601d823930815050f35b600080fdfe600080fdfea2646970667358221220e431b579e8ba493340106b7aafa4352bca61c5726af0ed1aef15941104d317ee64736f6c63430008130033",
+  "deployedBytecode": "0x600080fdfea2646970667358221220e431b579e8ba493340106b7aafa4352bca61c5726af0ed1aef15941104d317ee64736f6c63430008130033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

@@ -1,0 +1,15 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "MarketingMock",
+  "sourceName": "contracts/MarketingMock.sol",
+  "abi": [
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "bytecode": "0x608080604052346013576041908160198239f35b600080fdfe3615600957600080fd5b00fea26469706673582212200cd4d5953538ab7edca322bdbb215f16e1283ba5c07ad8de48c484ad4dd7cbbb64736f6c63430008130033",
+  "deployedBytecode": "0x3615600957600080fd5b00fea26469706673582212200cd4d5953538ab7edca322bdbb215f16e1283ba5c07ad8de48c484ad4dd7cbbb64736f6c63430008130033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

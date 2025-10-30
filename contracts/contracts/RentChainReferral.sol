@@ -152,7 +152,7 @@ contract RentChainReferral {
         uint256 tierPercentage
     ) {
         Referral storage ref = referrals[user];
-        uint256 pending = totalEarned[user] - ref.rewardsClaimed;
+        uint256 pending = ref.totalEarned - ref.rewardsClaimed;
         uint256 tier = getTierPercentage(referralCount[user]);
         uint256 percentage = getTierPercentage(referralCount[user]);
 
@@ -173,15 +173,11 @@ contract RentChainReferral {
         uint256 totalTreeSize
     ) {
         directReferrals = new address[](referralCount[user]);
-        uint256 index = 0;
-        
+
         // This would need additional storage to track the full tree
         // For now, return direct referrals only
-        for (uint256 i = 0; i < totalReferrals; i++) {
-            // This is simplified - in production, you'd have a proper mapping
-            break;
-        }
-        
+        // Note: This is a simplified implementation
+
         return (directReferrals, referralCount[user]);
     }
 

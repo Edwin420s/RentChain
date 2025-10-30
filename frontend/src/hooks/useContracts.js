@@ -1,22 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import { ethers } from 'ethers'
 import { useWeb3 } from './useWeb3'
-
-// Mock ABI - Replace with actual contract ABIs
-const RENTAL_AGREEMENT_ABI = [
-  "function createAgreement(address tenant, uint256 rent, uint256 deposit, uint256 duration) external",
-  "function payRent(uint256 agreementId) external payable",
-  "function releaseDeposit(uint256 agreementId) external",
-  "function getAgreement(uint256 agreementId) external view returns (tuple)",
-  "event AgreementCreated(uint256 indexed agreementId, address indexed landlord, address indexed tenant)",
-  "event RentPaid(uint256 indexed agreementId, address payer, uint256 amount)"
-]
-
-const PROPERTY_REGISTRY_ABI = [
-  "function registerProperty(string memory ipfsHash, uint256 price, string memory location) external",
-  "function getProperty(uint256 propertyId) external view returns (tuple)",
-  "event PropertyRegistered(uint256 indexed propertyId, address indexed owner, string ipfsHash)"
-]
+import { 
+  CONTRACT_ABIS, 
+  getContractAddresses, 
+  areContractsDeployed 
+} from '../contracts'
 
 export const useContracts = () => {
   const { provider, signer, account, isConnected } = useWeb3()
@@ -24,12 +13,8 @@ export const useContracts = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  // Contract addresses - Replace with actual deployed addresses
-  const CONTRACT_ADDRESSES = {
-    rentalAgreement: '0x...',
-    propertyRegistry: '0x...',
-    escrowManager: '0x...'
-  }
+  // Get contract addresses from configuration
+  const CONTRACT_ADDRESSES = getContractAddresses()
 
   // Initialize contracts when signer is available
   useEffect(() => {
@@ -42,22 +27,89 @@ export const useContracts = () => {
     try {
       setIsLoading(true)
       
-      const rentalAgreement = new ethers.Contract(
-        CONTRACT_ADDRESSES.rentalAgreement,
-        RENTAL_AGREEMENT_ABI,
-        signer
-      )
+      // Check if contracts are deployed
+      if (!areContractsDeployed()) {
+        setError('Contracts not deployed. Please deploy contracts first.')
+        setIsLoading(false)
+        return
+      }
 
-      const propertyRegistry = new ethers.Contract(
-        CONTRACT_ADDRESSES.propertyRegistry,
-        PROPERTY_REGISTRY_ABI,
-        signer
-      )
+      const initializedContracts = {}
 
-      setContracts({
-        rentalAgreement,
-        propertyRegistry
-      })
+      // Initialize all core contracts
+      if (CONTRACT_ADDRESSES.RentChainMain) {
+        initializedContracts.main = new ethers.Contract(
+          CONTRACT_ADDRESSES.RentChainMain,
+          CONTRACT_ABIS.RentChainMain,
+          signer
+        )
+      }
+
+      if (CONTRACT_ADDRESSES.PropertyRegistry) {
+        initializedContracts.propertyRegistry = new ethers.Contract(
+          CONTRACT_ADDRESSES.PropertyRegistry,
+          CONTRACT_ABIS.PropertyRegistry,
+          signer
+        )
+      }
+
+      if (CONTRACT_ADDRESSES.RentAgreement) {
+        initializedContracts.rentAgreement = new ethers.Contract(
+          CONTRACT_ADDRESSES.RentAgreement,
+          CONTRACT_ABIS.RentAgreement,
+          signer
+        )
+      }
+
+      if (CONTRACT_ADDRESSES.EscrowManager) {
+        initializedContracts.escrow = new ethers.Contract(
+          CONTRACT_ADDRESSES.EscrowManager,
+          CONTRACT_ABIS.EscrowManager,
+          signer
+        )
+      }
+
+      if (CONTRACT_ADDRESSES.PaymentProcessor) {
+        initializedContracts.payment = new ethers.Contract(
+          CONTRACT_ADDRESSES.PaymentProcessor,
+          CONTRACT_ABIS.PaymentProcessor,
+          signer
+        )
+      }
+
+      if (CONTRACT_ADDRESSES.UserRegistry) {
+        initializedContracts.userRegistry = new ethers.Contract(
+          CONTRACT_ADDRESSES.UserRegistry,
+          CONTRACT_ABIS.UserRegistry,
+          signer
+        )
+      }
+
+      if (CONTRACT_ADDRESSES.DisputeResolution) {
+        initializedContracts.dispute = new ethers.Contract(
+          CONTRACT_ADDRESSES.DisputeResolution,
+          CONTRACT_ABIS.DisputeResolution,
+          signer
+        )
+      }
+
+      if (CONTRACT_ADDRESSES.ReviewSystem) {
+        initializedContracts.review = new ethers.Contract(
+          CONTRACT_ADDRESSES.ReviewSystem,
+          CONTRACT_ABIS.ReviewSystem,
+          signer
+        )
+      }
+
+      if (CONTRACT_ADDRESSES.RentChainToken) {
+        initializedContracts.token = new ethers.Contract(
+          CONTRACT_ADDRESSES.RentChainToken,
+          CONTRACT_ABIS.RentChainToken,
+          signer
+        )
+      }
+
+      setContracts(initializedContracts)
 
     } catch (err) {
       setError('Failed to initialize contracts: ' + err.message)
@@ -69,11 +121,11 @@ export const useContracts = () => {
 
   // Contract methods
   const createRentalAgreement = useCallback(async (tenant, rent, deposit, duration) => {
-    if (!contracts.rentalAgreement) throw new Error('Contract not initialized')
+    if (!contracts.rentAgreement) throw new Error('RentAgreement contract not initialized')
     
     try {
       setIsLoading(true)
-      const tx = await contracts.rentalAgreement.createAgreement(
+      const tx = await contracts.rentAgreement.createAgreement(
         tenant,
         ethers.parseEther(rent.toString()),
         ethers.parseEther(deposit.toString()),
@@ -87,14 +139,14 @@ export const useContracts = () => {
     } finally {
       setIsLoading(false)
     }
-  }, [contracts.rentalAgreement])
+  }, [contracts.rentAgreement])
 
   const payRent = useCallback(async (agreementId, amount) => {
-    if (!contracts.rentalAgreement) throw new Error('Contract not initialized')
+    if (!contracts.payment) throw new Error('PaymentProcessor contract not initialized')
     
     try {
       setIsLoading(true)
-      const tx = await contracts.rentalAgreement.payRent(agreementId, {
+      const tx = await contracts.payment.payRent(agreementId, {
         value: ethers.parseEther(amount.toString())
       })
       const receipt = await tx.wait()
@@ -105,17 +157,20 @@ export const useContracts = () => {
     } finally {
       setIsLoading(false)
     }
-  }, [contracts.rentalAgreement])
+  }, [contracts.payment])
 
-  const registerProperty = useCallback(async (ipfsHash, price, location) => {
-    if (!contracts.propertyRegistry) throw new Error('Contract not initialized')
+  const registerProperty = useCallback(async (propertyData) => {
+    if (!contracts.propertyRegistry) throw new Error('PropertyRegistry contract not initialized')
     
     try {
       setIsLoading(true)
       const tx = await contracts.propertyRegistry.registerProperty(
-        ipfsHash,
-        ethers.parseEther(price.toString()),
-        location
+        propertyData.title,
+        propertyData.description,
+        propertyData.propertyType,
+        propertyData.location,
+        ethers.parseEther(propertyData.price.toString()),
+        propertyData.images
       )
       const receipt = await tx.wait()
       return receipt
@@ -128,31 +183,54 @@ export const useContracts = () => {
   }, [contracts.propertyRegistry])
 
   const getAgreement = useCallback(async (agreementId) => {
-    if (!contracts.rentalAgreement) throw new Error('Contract not initialized')
+    if (!contracts.rentAgreement) throw new Error('RentAgreement contract not initialized')
     
     try {
-      const agreement = await contracts.rentalAgreement.getAgreement(agreementId)
-      return {
-        id: agreementId,
-        landlord: agreement.landlord,
-        tenant: agreement.tenant,
-        rentAmount: ethers.formatEther(agreement.rentAmount),
-        depositAmount: ethers.formatEther(agreement.depositAmount),
-        startDate: new Date(agreement.startDate * 1000),
-        endDate: new Date(agreement.endDate * 1000),
-        status: agreement.status
-      }
+      const agreement = await contracts.rentAgreement.getAgreement(agreementId)
+      return agreement
     } catch (err) {
       setError('Failed to get agreement: ' + err.message)
       throw err
     }
-  }, [contracts.rentalAgreement])
+  }, [contracts.rentAgreement])
+
+  const getProperty = useCallback(async (propertyId) => {
+    if (!contracts.propertyRegistry) throw new Error('PropertyRegistry contract not initialized')
+    
+    try {
+      const property = await contracts.propertyRegistry.getProperty(propertyId)
+      return property
+    } catch (err) {
+      setError('Failed to get property: ' + err.message)
+      throw err
+    }
+  }, [contracts.propertyRegistry])
+
+  const registerUser = useCallback(async (userData) => {
+    if (!contracts.userRegistry) throw new Error('UserRegistry contract not initialized')
+    
+    try {
+      setIsLoading(true)
+      const tx = await contracts.userRegistry.registerUser(
+        userData.name,
+        userData.email,
+        userData.userType
+      )
+      const receipt = await tx.wait()
+      return receipt
+    } catch (err) {
+      setError('Failed to register user: ' + err.message)
+      throw err
+    } finally {
+      setIsLoading(false)
+    }
+  }, [contracts.userRegistry])
 
   // Event listeners
   const listenToAgreementEvents = useCallback((callback) => {
-    if (!contracts.rentalAgreement) return
+    if (!contracts.rentAgreement) return
     
-    contracts.rentalAgreement.on('AgreementCreated', (agreementId, landlord, tenant) => {
+    contracts.rentAgreement.on('AgreementCreated', (agreementId, landlord, tenant) => {
       callback({
         type: 'AgreementCreated',
         agreementId: agreementId.toString(),
@@ -161,7 +239,7 @@ export const useContracts = () => {
       })
     })
 
-    contracts.rentalAgreement.on('RentPaid', (agreementId, payer, amount) => {
+    contracts.rentAgreement.on('RentPaid', (agreementId, payer, amount) => {
       callback({
         type: 'RentPaid',
         agreementId: agreementId.toString(),
@@ -172,10 +250,10 @@ export const useContracts = () => {
 
     // Cleanup function
     return () => {
-      contracts.rentalAgreement.removeAllListeners('AgreementCreated')
-      contracts.rentalAgreement.removeAllListeners('RentPaid')
+      contracts.rentAgreement.removeAllListeners('AgreementCreated')
+      contracts.rentAgreement.removeAllListeners('RentPaid')
     }
-  }, [contracts.rentalAgreement])
+  }, [contracts.rentAgreement])
 
   return {
     // State
@@ -188,6 +266,11 @@ export const useContracts = () => {
     payRent,
     registerProperty,
     getAgreement,
-    listenToAgreementEvents
+    getProperty,
+    registerUser,
+    listenToAgreementEvents,
+    
+    // Helper
+    areContractsReady: () => Object.keys(contracts).length > 0
   }
 }

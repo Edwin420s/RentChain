@@ -153,9 +153,9 @@ contract RentChainBatchManager is RentChainBase {
         for (uint256 i = 0; i < operations.length; i++) {
             if (!operations[i].executed) {
                 uint256 operationGasBefore = gasleft();
-                
+
                 (bool success, bytes memory result) = targetContract.delegatecall(operations[i].data);
-                
+
                 uint256 gasUsed = operationGasBefore - gasleft();
                 operations[i].executed = success;
                 operations[i].gasUsed = gasUsed;
@@ -170,7 +170,8 @@ contract RentChainBatchManager is RentChainBase {
         }
 
         totalOperationsProcessed += operations.length;
-        totalGasSaved += (gasBefore - gasleft()); // Estimate gas savings
+        uint256 totalGasConsumed = gasBefore - gasleft();
+        totalGasSaved += totalGasConsumed; // Estimate gas savings
 
         emit BatchExecuted(batchId, successfulOperations, totalGasUsed);
     }

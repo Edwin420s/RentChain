@@ -1,0 +1,97 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IRentChainDeployer",
+  "sourceName": "contracts/RentChainInterface.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "deployRentChainSystem",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getDeploymentInfo",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "deployerAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deployTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isDeployed",
+          "type": "bool"
+        },
+        {
+          "internalType": "address",
+          "name": "mainContract",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "emergencySystem",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "treasuryWallet",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "developmentWallet",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "marketingWallet",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newMainContract",
+          "type": "address"
+        }
+      ],
+      "name": "upgradeSystem",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "verifySystem",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "systemHealthy",
+          "type": "bool"
+        },
+        {
+          "internalType": "string",
+          "name": "issues",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

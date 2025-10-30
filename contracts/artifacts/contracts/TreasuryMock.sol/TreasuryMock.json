@@ -1,0 +1,15 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "TreasuryMock",
+  "sourceName": "contracts/TreasuryMock.sol",
+  "abi": [
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "bytecode": "0x608080604052346013576041908160198239f35b600080fdfe3615600957600080fd5b00fea2646970667358221220a57994f6afc52f637898bea85b3ac32b56b875c6f4f67ed277a964b2ab95a25664736f6c63430008130033",
+  "deployedBytecode": "0x3615600957600080fd5b00fea2646970667358221220a57994f6afc52f637898bea85b3ac32b56b875c6f4f67ed277a964b2ab95a25664736f6c63430008130033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

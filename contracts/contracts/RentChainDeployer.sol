@@ -43,29 +43,23 @@ contract RentChainDeployer {
     function deployRentChainSystem() external onlyDeployer {
         require(!deployed, "Already deployed");
 
-        try this._deploySystem() {
-            deployed = true;
-            emit SystemDeployed(
-                address(contracts.main),
-                address(contracts.emergency),
-                block.timestamp
-            );
-        } catch Error(string memory reason) {
-            emit DeploymentFailed(reason);
-            revert(reason);
-        } catch {
-            emit DeploymentFailed("Unknown deployment error");
-            revert("Deployment failed");
-        }
+        _deploySystemInternal();
+
+        deployed = true;
+        emit SystemDeployed(
+            address(contracts.main),
+            address(contracts.emergency),
+            block.timestamp
+        );
     }
 
-    function _deploySystem() internal {
+    function _deploySystemInternal() internal {
         // Deploy emergency system first
         contracts.emergency = new RentChainEmergency();
-        
+
         // Deploy main contract
         contracts.main = new RentChainMain();
-        
+
         // Set up treasury addresses (would be actual multisigs in production)
         contracts.treasury = address(new TreasuryMock());
         contracts.development = address(new DevelopmentMock());
@@ -94,7 +88,7 @@ contract RentChainDeployer {
         contracts.emergency.addEmergencyAdmin(newMainContract);
 
         // Update main contract reference
-        contracts.main = RentChainMain(newMainContract);
+        contracts.main = RentChainMain(payable(newMainContract));
         
         emit ContractsUpgraded(newMainContract);
     }

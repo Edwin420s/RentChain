@@ -87,7 +87,7 @@ contract MultiSigWallet {
 
     function submitTransaction(address to, uint256 value, bytes memory data) external ownerExists(msg.sender) returns (uint256) {
         uint256 transactionId = transactions.length;
-        
+
         transactions.push(Transaction({
             to: to,
             value: value,
@@ -97,21 +97,21 @@ contract MultiSigWallet {
         }));
 
         emit Submission(transactionId);
-        confirmTransaction(transactionId);
+        _confirmTransaction(transactionId);
         return transactionId;
     }
 
-    function confirmTransaction(uint256 transactionId) 
-        public 
+    function _confirmTransaction(uint256 transactionId)
+        internal
         ownerExists(msg.sender)
         transactionExists(transactionId)
         notConfirmed(transactionId, msg.sender)
     {
         confirmations[transactionId][msg.sender] = true;
         transactions[transactionId].confirmations++;
-        
+
         emit Confirmation(msg.sender, transactionId);
-        
+
         if (transactions[transactionId].confirmations >= required) {
             executeTransaction(transactionId);
         }

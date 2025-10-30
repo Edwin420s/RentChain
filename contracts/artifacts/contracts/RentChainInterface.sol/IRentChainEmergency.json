@@ -1,0 +1,130 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IRentChainEmergency",
+  "sourceName": "contracts/RentChainInterface.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "emergencyPauseAll",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getEmergencyStatus",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "systemPaused",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "withdrawalsPaused",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "registrationsPaused",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "paymentsPaused",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "pauseStartTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "pauseDuration",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "pauseReason",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timeUntilResume",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bool",
+          "name": "pauseWithdrawals",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "pauseRegistrations",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "pausePayments",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "duration",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "pauseSystem",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "requestEmergencyWithdrawal",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "resumeSystem",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

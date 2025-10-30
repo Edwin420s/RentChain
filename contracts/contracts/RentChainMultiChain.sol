@@ -217,11 +217,11 @@ contract RentChainMultiChain {
         for (uint256 i = 0; i < userNonces[user]; i++) {
             bytes32 requestHash = keccak256(abi.encodePacked(
                 user,
-                0, // targetChain varies
+                uint256(0), // targetChain varies
                 "", // data varies
                 i,
                 block.chainid,
-                0 // timestamp varies
+                uint256(0) // timestamp varies
             ));
             
             if (crossChainRequests[requestHash].user == user) {

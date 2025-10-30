@@ -1,0 +1,15 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "DevelopmentMock",
+  "sourceName": "contracts/DevelopmentMock.sol",
+  "abi": [
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "bytecode": "0x608080604052346013576041908160198239f35b600080fdfe3615600957600080fd5b00fea26469706673582212205d62e9acad8fbd170878a2fe85efa1322c717c8a9ecebc6cfdf9c979b0d69dd064736f6c63430008130033",
+  "deployedBytecode": "0x3615600957600080fd5b00fea26469706673582212205d62e9acad8fbd170878a2fe85efa1322c717c8a9ecebc6cfdf9c979b0d69dd064736f6c63430008130033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

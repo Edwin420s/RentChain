@@ -197,12 +197,12 @@ contract RentChainBridge {
             bytes32 bridgeHash = keccak256(abi.encodePacked(
                 user,
                 address(0), // token will vary
-                0, // amount will vary
-                0, // targetChain will vary
+                uint256(0), // amount will vary
+                uint256(0), // targetChain will vary
                 address(0), // targetAddress will vary
                 i,
                 block.chainid,
-                0 // timestamp will vary
+                uint256(0) // timestamp will vary
             ));
             
             if (bridgeRequests[bridgeHash].user == user) {

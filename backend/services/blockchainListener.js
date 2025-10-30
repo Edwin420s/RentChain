@@ -1,4 +1,4 @@
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 const config = require('../config/env');
 const { pool } = require('../config/database');
 const notificationService = require('./notificationService');

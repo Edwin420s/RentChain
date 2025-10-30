@@ -194,9 +194,9 @@ contract RentChainSubscriptions {
     ) {
         UserSubscription storage userSub = userSubscriptions[user];
         SubscriptionPlan storage plan = subscriptionPlans[userSub.planId];
-        
+
         uint256 propsRemaining = userSub.isActive ? plan.maxProperties - userSub.propertiesUsed : 0;
-        uint256 tenantsRemaining = userSub.isActive ? plan.maxTenants - userSub.tenantsManaged : 0;
+        uint256 tenantsRemainingVal = userSub.isActive ? plan.maxTenants - userSub.tenantsManaged : 0;
 
         return (
             userSub.isActive && block.timestamp <= userSub.endDate,
@@ -206,7 +206,7 @@ contract RentChainSubscriptions {
             userSub.propertiesUsed,
             userSub.tenantsManaged,
             propsRemaining,
-            tenantsRemaining
+            tenantsRemainingVal
         );
     }
 

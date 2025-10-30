@@ -124,13 +124,13 @@ contract RentChainFinal {
         require(RentChainUtils.isContract(newContract), "Not a contract");
 
         if (stringsEqual(component, "main")) {
-            mainSystem = RentChainMain(newContract);
+            mainSystem = RentChainMain(payable(newContract));
         } else if (stringsEqual(component, "treasury")) {
-            treasuryManager = RentChainTreasuryManager(newContract);
+            treasuryManager = RentChainTreasuryManager(payable(newContract));
         } else if (stringsEqual(component, "compliance")) {
-            complianceSystem = RentChainCompliance(newContract);
+            complianceSystem = RentChainCompliance(payable(newContract));
         } else if (stringsEqual(component, "integration")) {
-            integrationSystem = RentChainIntegration(newContract);
+            integrationSystem = RentChainIntegration(payable(newContract));
         } else {
             revert("Invalid component");
         }

@@ -156,12 +156,12 @@ abstract contract RentChainBase {
         uint256 pauseEnd,
         string memory reason
     ) {
-        (bool paused, , , , uint256 pauseStart, uint256 duration, string memory reason, ) = emergencySystem.getEmergencyStatus();
+        (bool _paused, , , , uint256 _pauseStart, uint256 duration, string memory _reason, ) = emergencySystem.getEmergencyStatus();
         return (
-            paused,
-            pauseStart,
-            pauseStart + duration,
-            reason
+            _paused,
+            _pauseStart,
+            _pauseStart + duration,
+            _reason
         );
     }
 
