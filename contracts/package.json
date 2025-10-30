@@ -9,6 +9,7 @@
     "deploy:local": "hardhat run scripts/deploy.js --network hardhat",
     "deploy:sepolia": "hardhat run scripts/deploy.js --network scrollSepolia",
     "deploy:mainnet": "hardhat run scripts/deploy.js --network scroll",
+    "extract-abis": "node scripts/extract-abis.js",
     "verify": "hardhat run scripts/verify.js",
     "node": "hardhat node",
     "clean": "hardhat clean",
