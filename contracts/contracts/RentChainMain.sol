@@ -60,71 +60,64 @@ contract RentChainMain is RentChainBase {
     event EmergencyTriggered(string reason, address triggeredBy);
     event RevenueDistributed(uint256 amount, address treasury);
 
-    constructor() RentChainBase(address(0)) {
-        // Base constructor - will be initialized later
-    }
+    constructor(
+        address _rentToken,
+        address _userRegistry,
+        address _propertyRegistry,
+        address _rentAgreement,
+        address _escrowManager,
+        address _paymentProcessor,
+        address _disputeResolution,
+        address _reviewSystem
+    ) RentChainBase(address(0)) {
+        require(_rentToken != address(0), "Invalid token address");
+        require(_userRegistry != address(0), "Invalid user registry");
+        require(_propertyRegistry != address(0), "Invalid property registry");
+        require(_rentAgreement != address(0), "Invalid rent agreement");
+        require(_escrowManager != address(0), "Invalid escrow manager");
+        require(_paymentProcessor != address(0), "Invalid payment processor");
+        require(_disputeResolution != address(0), "Invalid dispute resolution");
+        require(_reviewSystem != address(0), "Invalid review system");
 
-    function initializeSystem(
-        address _emergencySystem,
-        address _treasury,
-        address _development,
-        address _marketing
-    ) external onlyAdmin {
-        require(!initialized, "System already initialized");
-
-        // Initialize base contract
-        initializeBase(msg.sender, _emergencySystem);
-
-        // Deploy core contracts
-        _deployCoreContracts();
+        // Set core contract addresses
+        rentToken = RentChainToken(_rentToken);
+        userRegistry = UserRegistry(_userRegistry);
+        propertyRegistry = PropertyRegistry(_propertyRegistry);
+        rentAgreement = RentAgreement(_rentAgreement);
+        escrowManager = EscrowManager(_escrowManager);
+        paymentProcessor = PaymentProcessor(_paymentProcessor);
+        disputeResolution = DisputeResolution(_disputeResolution);
+        reviewSystem = ReviewSystem(_reviewSystem);
         
-        // Initialize feature flags
+        // Initialize feature flags with conservative defaults
         featureFlags = RentChainConstants.getDefaultFeatureFlags();
         
         // Set system state
         systemActive = true;
         systemLaunchTime = block.timestamp;
+    }
 
+    function initializeOptionalContracts(
+        address _stakingRewards,
+        address _rentalInsurance,
+        address _marketplace,
+        address _subscriptions,
+        address _referralSystem,
+        address _multiChain,
+        address _analytics
+    ) external onlyAdmin {
+        require(!initialized, "Already initialized");
+        
+        if (_stakingRewards != address(0)) stakingRewards = StakingRewards(_stakingRewards);
+        if (_rentalInsurance != address(0)) rentalInsurance = RentalInsurance(_rentalInsurance);
+        if (_marketplace != address(0)) marketplace = RentChainMarketplace(_marketplace);
+        if (_subscriptions != address(0)) subscriptions = RentChainSubscriptions(_subscriptions);
+        if (_referralSystem != address(0)) referralSystem = RentChainReferral(_referralSystem);
+        if (_multiChain != address(0)) multiChain = RentChainMultiChain(_multiChain);
+        if (_analytics != address(0)) analytics = RentChainAnalytics(_analytics);
+        
+        initialized = true;
         emit SystemInitialized(msg.sender, block.timestamp);
-    }
-
-    function _deployCoreContracts() internal {
-        // Deploy in dependency order
-        userRegistry = new UserRegistry();
-        propertyRegistry = new PropertyRegistry();
-        rentToken = new RentChainToken();
-        
-        rentAgreement = new RentAgreement(address(propertyRegistry));
-        escrowManager = new EscrowManager(address(rentAgreement));
-        paymentProcessor = new PaymentProcessor();
-        
-        disputeResolution = new DisputeResolution();
-        reviewSystem = new ReviewSystem();
-        stakingRewards = new StakingRewards(address(rentToken), address(rentToken));
-        rentalInsurance = new RentalInsurance(address(rentToken));
-        
-        marketplace = new RentChainMarketplace();
-        subscriptions = new RentChainSubscriptions(address(rentToken));
-        referralSystem = new RentChainReferral(address(rentToken));
-        multiChain = new RentChainMultiChain();
-        analytics = new RentChainAnalytics(address(propertyRegistry), address(rentAgreement));
-
-        // Set up initial token distribution
-        _setupInitialTokenDistribution();
-    }
-
-    function _setupInitialTokenDistribution() internal {
-        // Mint initial supply to treasury and development
-        uint256 initialSupply = RentChainConstants.INITIAL_SUPPLY;
-        uint256 treasuryAmount = (initialSupply * 40) / 100; // 40%
-        uint256 developmentAmount = (initialSupply * 20) / 100; // 20%
-        uint256 marketingAmount = (initialSupply * 10) / 100; // 10%
-        uint256 ecosystemAmount = initialSupply - treasuryAmount - developmentAmount - marketingAmount; // 30%
-
-        rentToken.mint(RentChainConstants.TREASURY_ADDRESS, treasuryAmount);
-        rentToken.mint(RentChainConstants.DEVELOPMENT_ADDRESS, developmentAmount);
-        rentToken.mint(RentChainConstants.MARKETING_ADDRESS, marketingAmount);
-        rentToken.mint(address(this), ecosystemAmount);
     }
 
     // Main User Functions

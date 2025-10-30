@@ -7,6 +7,15 @@ import "./RentChainCompliance.sol";
 import "./RentChainIntegration.sol";
 import "./RentChainConstants.sol";
 import "./RentChainUtils.sol";
+import "./RentChainToken.sol";
+import "./UserRegistry.sol";
+import "./PropertyRegistry.sol";
+import "./RentAgreement.sol";
+import "./EscrowManager.sol";
+import "./PaymentProcessor.sol";
+import "./DisputeResolution.sol";
+import "./ReviewSystem.sol";
+import "./RentChainEmergency.sol";
 
 contract RentChainFinal {
     using RentChainUtils for address;
@@ -52,21 +61,32 @@ contract RentChainFinal {
         // Deploy emergency system first
         RentChainEmergency emergencySystem = new RentChainEmergency();
 
-        // Deploy main system
-        mainSystem = new RentChainMain();
+        // Deploy core contracts
+        RentChainToken token = new RentChainToken();
+        UserRegistry userRegistry = new UserRegistry();
+        PropertyRegistry propertyRegistry = new PropertyRegistry();
+        RentAgreement rentAgreement = new RentAgreement(address(propertyRegistry));
+        EscrowManager escrowManager = new EscrowManager(address(rentAgreement));
+        PaymentProcessor paymentProcessor = new PaymentProcessor();
+        DisputeResolution disputeResolution = new DisputeResolution();
+        ReviewSystem reviewSystem = new ReviewSystem();
+
+        // Deploy main system with core contract addresses
+        mainSystem = new RentChainMain(
+            address(token),
+            address(userRegistry),
+            address(propertyRegistry),
+            address(rentAgreement),
+            address(escrowManager),
+            address(paymentProcessor),
+            address(disputeResolution),
+            address(reviewSystem)
+        );
         
         // Deploy supporting systems
         treasuryManager = new RentChainTreasuryManager(address(emergencySystem));
         complianceSystem = new RentChainCompliance(address(emergencySystem));
         integrationSystem = new RentChainIntegration(address(emergencySystem));
-
-        // Initialize main system
-        mainSystem.initializeSystem(
-            address(emergencySystem),
-            address(treasuryManager),
-            systemOwner,
-            systemOwner
-        );
 
         // Initialize supporting systems
         treasuryManager.initializeTreasury(systemOwner, systemOwner, systemOwner, systemOwner);

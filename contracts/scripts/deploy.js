@@ -87,10 +87,22 @@ async function main() {
     deployedContracts.ReviewSystem = await reviewSystem.getAddress();
     console.log("✅ ReviewSystem deployed to:", deployedContracts.ReviewSystem, "\n");
 
-    // 9. Skip RentChainMain deployment due to contract size limits
-    console.log("⚠️ Skipping RentChainMain deployment due to contract size limits on Scroll Sepolia");
-    console.log("   All core contracts have been deployed successfully\n");
-    deployedContracts.RentChainMain = "0x0000000000000000000000000000000000000000"; // Placeholder
+    // 9. Deploy RentChainMain (with contract addresses)
+    console.log("📝 Deploying RentChainMain...");
+    const RentChainMain = await hre.ethers.getContractFactory("RentChainMain");
+    const rentChainMain = await RentChainMain.deploy(
+      deployedContracts.RentChainToken,
+      deployedContracts.UserRegistry,
+      deployedContracts.PropertyRegistry,
+      deployedContracts.RentAgreement,
+      deployedContracts.EscrowManager,
+      deployedContracts.PaymentProcessor,
+      deployedContracts.DisputeResolution,
+      deployedContracts.ReviewSystem
+    );
+    await rentChainMain.waitForDeployment();
+    deployedContracts.RentChainMain = await rentChainMain.getAddress();
+    console.log("✅ RentChainMain deployed to:", deployedContracts.RentChainMain, "\n");
 
     // Save deployment addresses to file
     const deploymentInfo = {
@@ -143,9 +155,6 @@ VITE_CONTRACT_ADDRESS_USER_REGISTRY=${deployedContracts.UserRegistry}
 VITE_CONTRACT_ADDRESS_DISPUTE=${deployedContracts.DisputeResolution}
 VITE_CONTRACT_ADDRESS_REVIEW=${deployedContracts.ReviewSystem}
 VITE_CONTRACT_ADDRESS_TOKEN=${deployedContracts.RentChainToken}
-
-# Note: RentChainMain was skipped due to contract size limits on Scroll Sepolia
-# Deploy to mainnet or use a proxy pattern for full functionality
 `;
 
     const envPath = path.join(__dirname, "..", "deployments", `${network}.env`);

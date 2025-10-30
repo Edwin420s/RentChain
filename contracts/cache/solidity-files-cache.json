@@ -160,42 +160,6 @@
         "RentChainV2"
       ]
     },
-    "D:\\Projects\\RentChain\\contracts\\contracts\\PropertyRegistry.sol": {
-      "lastModificationDate": 1761771980251,
-      "contentHash": "27ce2f6ef8e64af24363f8041d4f5e12",
-      "sourceName": "contracts/PropertyRegistry.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.19"
-      ],
-      "artifacts": [
-        "PropertyRegistry"
-      ]
-    },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentAgreement.sol": {
       "lastModificationDate": 1761772811224,
       "contentHash": "d9cfa7f691cbae662111217ed4b29dcb",
@@ -273,6 +237,42 @@
         "EscrowManager"
       ]
     },
+    "D:\\Projects\\RentChain\\contracts\\contracts\\PropertyRegistry.sol": {
+      "lastModificationDate": 1761771980251,
+      "contentHash": "27ce2f6ef8e64af24363f8041d4f5e12",
+      "sourceName": "contracts/PropertyRegistry.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.19"
+      ],
+      "artifacts": [
+        "PropertyRegistry"
+      ]
+    },
     "D:\\Projects\\RentChain\\contracts\\contracts\\PaymentProcessor.sol": {
       "lastModificationDate": 1761772234753,
       "contentHash": "40e7cd164b5b406a47f3a90a83366d40",
@@ -347,10 +347,10 @@
         "UserRegistry"
       ]
     },
-    "D:\\Projects\\RentChain\\contracts\\contracts\\DisputeResolution.sol": {
-      "lastModificationDate": 1761771980246,
-      "contentHash": "f69b08f43fc1edbd80ec31db4172b86e",
-      "sourceName": "contracts/DisputeResolution.sol",
+    "D:\\Projects\\RentChain\\contracts\\contracts\\RentalInsurance.sol": {
+      "lastModificationDate": 1761772477007,
+      "contentHash": "593612d4f1df88f099a888de51f586c8",
+      "sourceName": "contracts/RentalInsurance.sol",
       "solcConfig": {
         "version": "0.8.19",
         "settings": {
@@ -375,12 +375,14 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "./interfaces/IERC20.sol"
+      ],
       "versionPragmas": [
         "^0.8.19"
       ],
       "artifacts": [
-        "DisputeResolution"
+        "RentalInsurance"
       ]
     },
     "D:\\Projects\\RentChain\\contracts\\contracts\\ReviewSystem.sol": {
@@ -455,10 +457,10 @@
         "RentChainToken"
       ]
     },
-    "D:\\Projects\\RentChain\\contracts\\contracts\\RentalInsurance.sol": {
-      "lastModificationDate": 1761772477007,
-      "contentHash": "593612d4f1df88f099a888de51f586c8",
-      "sourceName": "contracts/RentalInsurance.sol",
+    "D:\\Projects\\RentChain\\contracts\\contracts\\DisputeResolution.sol": {
+      "lastModificationDate": 1761771980246,
+      "contentHash": "f69b08f43fc1edbd80ec31db4172b86e",
+      "sourceName": "contracts/DisputeResolution.sol",
       "solcConfig": {
         "version": "0.8.19",
         "settings": {
@@ -483,18 +485,16 @@
           }
         }
       },
-      "imports": [
-        "./interfaces/IERC20.sol"
-      ],
+      "imports": [],
       "versionPragmas": [
         "^0.8.19"
       ],
       "artifacts": [
-        "RentalInsurance"
+        "DisputeResolution"
       ]
     },
     "D:\\Projects\\RentChain\\contracts\\contracts\\interfaces\\IPropertyRegistry.sol": {
-      "lastModificationDate": 1761772797127,
+      "lastModificationDate": 1761821343743,
       "contentHash": "00412b3ab1d502915d17b6400cf9e72c",
       "sourceName": "contracts/interfaces/IPropertyRegistry.sol",
       "solcConfig": {
@@ -530,8 +530,8 @@
       ]
     },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainMain.sol": {
-      "lastModificationDate": 1761775109376,
-      "contentHash": "e8f92201734252f39e37d2d4e4da485c",
+      "lastModificationDate": 1761821436500,
+      "contentHash": "a23fc067c65dc38e083d407fa183a419",
       "sourceName": "contracts/RentChainMain.sol",
       "solcConfig": {
         "version": "0.8.19",
@@ -585,44 +585,6 @@
         "RentChainMain"
       ]
     },
-    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainSubscriptions.sol": {
-      "lastModificationDate": 1761776906674,
-      "contentHash": "e71acaa972841bbe15560fcb4a1716fe",
-      "sourceName": "contracts/RentChainSubscriptions.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./interfaces/IERC20.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.19"
-      ],
-      "artifacts": [
-        "RentChainSubscriptions"
-      ]
-    },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainMarketplace.sol": {
       "lastModificationDate": 1761772477267,
       "contentHash": "950770d1b4a4f4c629660b99a67efabf",
@@ -660,6 +622,44 @@
       "artifacts": [
         "IERC721",
         "RentChainMarketplace"
+      ]
+    },
+    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainSubscriptions.sol": {
+      "lastModificationDate": 1761776906674,
+      "contentHash": "e71acaa972841bbe15560fcb4a1716fe",
+      "sourceName": "contracts/RentChainSubscriptions.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.19"
+      ],
+      "artifacts": [
+        "RentChainSubscriptions"
       ]
     },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainReferral.sol": {
@@ -738,42 +738,6 @@
         "RentChainMultiChain"
       ]
     },
-    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainAnalytics.sol": {
-      "lastModificationDate": 1761772091373,
-      "contentHash": "a24ef56b686259fa7da706be04363d84",
-      "sourceName": "contracts/RentChainAnalytics.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.19"
-      ],
-      "artifacts": [
-        "RentChainAnalytics"
-      ]
-    },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainEmergency.sol": {
       "lastModificationDate": 1761772903416,
       "contentHash": "b4d972d7200b7282c81e0df28d91eb91",
@@ -810,6 +774,42 @@
       ],
       "artifacts": [
         "RentChainEmergency"
+      ]
+    },
+    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainAnalytics.sol": {
+      "lastModificationDate": 1761772091373,
+      "contentHash": "a24ef56b686259fa7da706be04363d84",
+      "sourceName": "contracts/RentChainAnalytics.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.19"
+      ],
+      "artifacts": [
+        "RentChainAnalytics"
       ]
     },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainBase.sol": {
@@ -852,6 +852,42 @@
         "RentChainBase"
       ]
     },
+    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainConstants.sol": {
+      "lastModificationDate": 1761774129260,
+      "contentHash": "1544949594be6dd164df4bf16efe7513",
+      "sourceName": "contracts/RentChainConstants.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.19"
+      ],
+      "artifacts": [
+        "RentChainConstants"
+      ]
+    },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainUtils.sol": {
       "lastModificationDate": 1761777237653,
       "contentHash": "0d8759c3618cac0d2dfab8484a6b60b3",
@@ -888,42 +924,6 @@
       ],
       "artifacts": [
         "RentChainUtils"
-      ]
-    },
-    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainConstants.sol": {
-      "lastModificationDate": 1761774129260,
-      "contentHash": "1544949594be6dd164df4bf16efe7513",
-      "sourceName": "contracts/RentChainConstants.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.19"
-      ],
-      "artifacts": [
-        "RentChainConstants"
       ]
     },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainVesting.sol": {
@@ -1047,51 +1047,9 @@
         "RentChainTreasuryManager"
       ]
     },
-    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainIntegration.sol": {
-      "lastModificationDate": 1761773081183,
-      "contentHash": "de497b4413cf8707b109bd4725606408",
-      "sourceName": "contracts/RentChainIntegration.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./interfaces/IERC20.sol",
-        "./RentChainBase.sol",
-        "./RentChainConstants.sol",
-        "./RentChainUtils.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.19"
-      ],
-      "artifacts": [
-        "IAggregatorV3",
-        "RentChainIntegration"
-      ]
-    },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainFinal.sol": {
-      "lastModificationDate": 1761777143142,
-      "contentHash": "10e86d8c0cc534ab26e878a2e2dac0e4",
+      "lastModificationDate": 1761821605932,
+      "contentHash": "09563d86a5766a22a62c72ab48e0a67e",
       "sourceName": "contracts/RentChainFinal.sol",
       "solcConfig": {
         "version": "0.8.19",
@@ -1123,7 +1081,16 @@
         "./RentChainCompliance.sol",
         "./RentChainIntegration.sol",
         "./RentChainConstants.sol",
-        "./RentChainUtils.sol"
+        "./RentChainUtils.sol",
+        "./RentChainToken.sol",
+        "./UserRegistry.sol",
+        "./PropertyRegistry.sol",
+        "./RentAgreement.sol",
+        "./EscrowManager.sol",
+        "./PaymentProcessor.sol",
+        "./DisputeResolution.sol",
+        "./ReviewSystem.sol",
+        "./RentChainEmergency.sol"
       ],
       "versionPragmas": [
         "^0.8.19"
@@ -1172,9 +1139,51 @@
         "RentChainCompliance"
       ]
     },
+    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainIntegration.sol": {
+      "lastModificationDate": 1761773081183,
+      "contentHash": "de497b4413cf8707b109bd4725606408",
+      "sourceName": "contracts/RentChainIntegration.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/IERC20.sol",
+        "./RentChainBase.sol",
+        "./RentChainConstants.sol",
+        "./RentChainUtils.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.19"
+      ],
+      "artifacts": [
+        "IAggregatorV3",
+        "RentChainIntegration"
+      ]
+    },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainDeployer.sol": {
-      "lastModificationDate": 1761777112653,
-      "contentHash": "ab29321db73c62c1655ef3de0a36c8a4",
+      "lastModificationDate": 1761821550476,
+      "contentHash": "6f27a7a420547e6b6c00676f5be80508",
       "sourceName": "contracts/RentChainDeployer.sol",
       "solcConfig": {
         "version": "0.8.19",
@@ -1207,7 +1216,15 @@
         "./RentChainUtils.sol",
         "./TreasuryMock.sol",
         "./DevelopmentMock.sol",
-        "./MarketingMock.sol"
+        "./MarketingMock.sol",
+        "./RentChainToken.sol",
+        "./UserRegistry.sol",
+        "./PropertyRegistry.sol",
+        "./RentAgreement.sol",
+        "./EscrowManager.sol",
+        "./PaymentProcessor.sol",
+        "./DisputeResolution.sol",
+        "./ReviewSystem.sol"
       ],
       "versionPragmas": [
         "^0.8.19"
@@ -1252,42 +1269,6 @@
         "TreasuryMock"
       ]
     },
-    "D:\\Projects\\RentChain\\contracts\\contracts\\MarketingMock.sol": {
-      "lastModificationDate": 1761772109996,
-      "contentHash": "66d6d1f6405c720ef7992c6e17266921",
-      "sourceName": "contracts/MarketingMock.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.19"
-      ],
-      "artifacts": [
-        "MarketingMock"
-      ]
-    },
     "D:\\Projects\\RentChain\\contracts\\contracts\\DevelopmentMock.sol": {
       "lastModificationDate": 1761772107773,
       "contentHash": "5ecdd8330d9487003601c35e1f0357a3",
@@ -1324,10 +1305,46 @@
         "DevelopmentMock"
       ]
     },
-    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainBatchManager.sol": {
-      "lastModificationDate": 1761776894317,
-      "contentHash": "4b874880c569d9abb665bb68bd18aedf",
-      "sourceName": "contracts/RentChainBatchManager.sol",
+    "D:\\Projects\\RentChain\\contracts\\contracts\\MarketingMock.sol": {
+      "lastModificationDate": 1761772109996,
+      "contentHash": "66d6d1f6405c720ef7992c6e17266921",
+      "sourceName": "contracts/MarketingMock.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.19"
+      ],
+      "artifacts": [
+        "MarketingMock"
+      ]
+    },
+    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainFactory.sol": {
+      "lastModificationDate": 1761771980263,
+      "contentHash": "16587f19403af5682b70641350d3b753",
+      "sourceName": "contracts/RentChainFactory.sol",
       "solcConfig": {
         "version": "0.8.19",
         "settings": {
@@ -1353,16 +1370,60 @@
         }
       },
       "imports": [
-        "./interfaces/IERC20.sol",
-        "./RentChainBase.sol",
-        "./RentChainConstants.sol",
-        "./RentChainUtils.sol"
+        "./PropertyRegistry.sol",
+        "./RentAgreement.sol",
+        "./EscrowManager.sol",
+        "./PaymentProcessor.sol",
+        "./UserRegistry.sol",
+        "./DisputeResolution.sol",
+        "./ReviewSystem.sol"
       ],
       "versionPragmas": [
         "^0.8.19"
       ],
       "artifacts": [
-        "RentChainBatchManager"
+        "RentChainFactory"
+      ]
+    },
+    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChain.sol": {
+      "lastModificationDate": 1761771980253,
+      "contentHash": "5fd5ed80a2ca0bf165f1b07127d56b21",
+      "sourceName": "contracts/RentChain.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./PropertyRegistry.sol",
+        "./RentAgreement.sol",
+        "./EscrowManager.sol",
+        "./PaymentProcessor.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.19"
+      ],
+      "artifacts": [
+        "RentChain"
       ]
     },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainRewardsEngine.sol": {
@@ -1606,6 +1667,47 @@
         "RentChainGasStation"
       ]
     },
+    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainBatchManager.sol": {
+      "lastModificationDate": 1761776894317,
+      "contentHash": "4b874880c569d9abb665bb68bd18aedf",
+      "sourceName": "contracts/RentChainBatchManager.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/IERC20.sol",
+        "./RentChainBase.sol",
+        "./RentChainConstants.sol",
+        "./RentChainUtils.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.19"
+      ],
+      "artifacts": [
+        "RentChainBatchManager"
+      ]
+    },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainInterface.sol": {
       "lastModificationDate": 1761773135734,
       "contentHash": "a6a12cadf85bd3406b304aee73ce9bdd",
@@ -1644,91 +1746,6 @@
         "IRentChain",
         "IRentChainDeployer",
         "IRentChainEmergency"
-      ]
-    },
-    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainFactory.sol": {
-      "lastModificationDate": 1761771980263,
-      "contentHash": "16587f19403af5682b70641350d3b753",
-      "sourceName": "contracts/RentChainFactory.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./PropertyRegistry.sol",
-        "./RentAgreement.sol",
-        "./EscrowManager.sol",
-        "./PaymentProcessor.sol",
-        "./UserRegistry.sol",
-        "./DisputeResolution.sol",
-        "./ReviewSystem.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.19"
-      ],
-      "artifacts": [
-        "RentChainFactory"
-      ]
-    },
-    "D:\\Projects\\RentChain\\contracts\\contracts\\RentChain.sol": {
-      "lastModificationDate": 1761771980253,
-      "contentHash": "5fd5ed80a2ca0bf165f1b07127d56b21",
-      "sourceName": "contracts/RentChain.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "viaIR": true,
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./PropertyRegistry.sol",
-        "./RentAgreement.sol",
-        "./EscrowManager.sol",
-        "./PaymentProcessor.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.19"
-      ],
-      "artifacts": [
-        "RentChain"
       ]
     },
     "D:\\Projects\\RentChain\\contracts\\contracts\\RentChainTreasury.sol": {

@@ -22,18 +22,18 @@ export const WalletProvider = ({ children, onWalletConnected }) => {
   const [provider, setProvider] = useState(null)
 
   useEffect(() => {
-    if (window.ethereum) {
+    if (window.ethereum && window.ethereum.isMetaMask !== false) {
       const web3Provider = new ethers.BrowserProvider(window.ethereum)
       setProvider(web3Provider)
       
       // Check if already connected
       checkConnection()
       
-      // Listen for account changes
-      window.ethereum.on('accountsChanged', handleAccountsChanged)
-      
-      // Listen for chain changes
-      window.ethereum.on('chainChanged', handleChainChanged)
+      // Listen for account changes - check if method exists
+      if (typeof window.ethereum.on === 'function') {
+        window.ethereum.on('accountsChanged', handleAccountsChanged)
+        window.ethereum.on('chainChanged', handleChainChanged)
+      }
       
       return () => {
         if (window.ethereum.removeListener) {
@@ -106,6 +106,12 @@ export const WalletProvider = ({ children, onWalletConnected }) => {
   const connectWallet = async () => {
     if (!window.ethereum) {
       alert('Please install MetaMask to use this application!')
+      return
+    }
+
+    // Check if it's an Ethereum wallet (not Cardano)
+    if (window.ethereum.isMetaMask === false || typeof window.ethereum.request !== 'function') {
+      alert('Please install MetaMask or an Ethereum-compatible wallet to use this application!')
       return
     }
 

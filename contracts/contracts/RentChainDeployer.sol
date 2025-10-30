@@ -8,6 +8,14 @@ import "./RentChainUtils.sol";
 import "./TreasuryMock.sol";
 import "./DevelopmentMock.sol";
 import "./MarketingMock.sol";
+import "./RentChainToken.sol";
+import "./UserRegistry.sol";
+import "./PropertyRegistry.sol";
+import "./RentAgreement.sol";
+import "./EscrowManager.sol";
+import "./PaymentProcessor.sol";
+import "./DisputeResolution.sol";
+import "./ReviewSystem.sol";
 
 contract RentChainDeployer {
     using RentChainUtils for address;
@@ -57,21 +65,32 @@ contract RentChainDeployer {
         // Deploy emergency system first
         contracts.emergency = new RentChainEmergency();
 
-        // Deploy main contract
-        contracts.main = new RentChainMain();
+        // Deploy core contracts
+        RentChainToken token = new RentChainToken();
+        UserRegistry userRegistry = new UserRegistry();
+        PropertyRegistry propertyRegistry = new PropertyRegistry();
+        RentAgreement rentAgreement = new RentAgreement(address(propertyRegistry));
+        EscrowManager escrowManager = new EscrowManager(address(rentAgreement));
+        PaymentProcessor paymentProcessor = new PaymentProcessor();
+        DisputeResolution disputeResolution = new DisputeResolution();
+        ReviewSystem reviewSystem = new ReviewSystem();
+
+        // Deploy main contract with core contract addresses
+        contracts.main = new RentChainMain(
+            address(token),
+            address(userRegistry),
+            address(propertyRegistry),
+            address(rentAgreement),
+            address(escrowManager),
+            address(paymentProcessor),
+            address(disputeResolution),
+            address(reviewSystem)
+        );
 
         // Set up treasury addresses (would be actual multisigs in production)
         contracts.treasury = address(new TreasuryMock());
         contracts.development = address(new DevelopmentMock());
         contracts.marketing = address(new MarketingMock());
-
-        // Initialize the main system
-        contracts.main.initializeSystem(
-            address(contracts.emergency),
-            contracts.treasury,
-            contracts.development,
-            contracts.marketing
-        );
 
         // Set up emergency admins
         contracts.emergency.addEmergencyAdmin(address(contracts.main));
