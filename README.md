@@ -6,7 +6,7 @@
 [![Scroll zkEVM](https://img.shields.io/badge/Scroll-zkEVM-purple)](https://scroll.io)
 [![Solidity](https://img.shields.io/badge/Solidity-0.8.19-orange)](https://soliditylang.org/)
 [![React](https://img.shields.io/badge/React-18.2.0-blue)](https://reactjs.org/)
-
+ 
 ---
 
 ## 🌟 What is ZuriRent?
