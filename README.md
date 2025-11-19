@@ -1,4 +1,4 @@
-# ZuriRent — Beautiful, Smart, and Secure Renting
+# ZuriRent Beautiful, Smart, and Secure Renting
 
 **Transforming rental housing with blockchain transparency, zk-powered identity, and automated escrow on Scroll zkEVM**
 
