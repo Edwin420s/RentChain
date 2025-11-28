@@ -9,7 +9,7 @@
  
 ---
 
-## 🌟 What is ZuriRent?
+## 🌟 What is ZuriRent? 
 
 ZuriRent is a decentralized rental and housing discovery platform that connects landlords and tenants through transparent, trustless smart contracts. Built on Scroll zkEVM, it eliminates fraud, fake listings, and rental disputes while providing seamless payment integration for both crypto and local currencies (M-Pesa, Airtel Money, banks).
 
