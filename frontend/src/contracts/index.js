@@ -3,7 +3,7 @@
  * 
  * This module exports contract ABIs and configuration utilities
  */
-
+ 
 // Import ABIs
 import RentChainMainABI from './RentChainMain.json';
 import PropertyRegistryABI from './PropertyRegistry.json';
